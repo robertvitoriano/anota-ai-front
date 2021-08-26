@@ -1,8 +1,8 @@
 import React from 'react'
 
-const SignUp = () =>{
+const SignIn = () =>{
 
   return <h1>Sign In</h1>
 }
 
-export default SignUp
+export default SignIn
