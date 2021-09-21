@@ -1,8 +1,8 @@
 import React from "react";
+import { Wrapper } from './styles'
+const ListNotes = () => {
 
-const ListNotes = () =>{
-
-  return <h1>List Notes</h1>
+  return <Wrapper><h1>Notes List</h1></Wrapper>
 }
 
 export default ListNotes
