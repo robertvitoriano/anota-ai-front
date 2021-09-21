@@ -5,19 +5,17 @@ import {
   Route
 } from "react-router-dom";
 
-import Layout from './layouts/Auth'
 import routes from './routes'
-import ListNotes from './pages/Auth/common/notes/ListNotes'
+import{ AuthLayout }from "layouts";
 
 export default function App() {
-  console.log('ROUTES ', routes)
   return (
     <Router>
-      <Layout>
+      <AuthLayout>
         <Switch>
-          {routes.map((route)=>()=><Route exact={route.path==='/'?true:false} path={route.path} component ={route.component}/>)}
+          {routes.map((route, index)=>(<Route exact={route.path==="/"} path={route.path} component={route.component} key={index}/>))}
         </Switch>
-      </Layout>
+        </AuthLayout>
     </Router>
   );
 }

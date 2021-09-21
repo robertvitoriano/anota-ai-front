@@ -5,7 +5,7 @@ const routes = [
   {
     component:ListNotes,
     title:'Anotações',
-    path:'/notes-list',
+    path:'/notes',
     icon:''
   }
 ]
