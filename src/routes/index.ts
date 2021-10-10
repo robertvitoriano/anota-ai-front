@@ -1,3 +1,4 @@
 import commonRoutes from  './common'
+import unauthRoutes from './unauth'
 
-export default commonRoutes
+export  {commonRoutes, unauthRoutes}

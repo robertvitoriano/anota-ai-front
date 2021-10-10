@@ -1,11 +1,9 @@
 import styled from 'styled-components'
-import { Input as AntDesignInput } from "antd";
-import { Form as AntDesignForm} from "antd";
-import { Button as AntDesignButton} from "antd";
-
+import { Input as AntDesignInput, Form as AntDesignForm, Button as AntDesignButton, Typography, Divider as AntDesignDivider } from "antd";
 interface Props {
-backgroundImage:any
+  backgroundImage: any
 }
+
 export const Wrapper = styled.div<Pick<Props, 'backgroundImage'>>`
 display: flex;
 justify-content: center;
@@ -47,9 +45,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-border: 10px solid gray;
-border-radius: 15px;
-opacity: 0.5;
+/* border: .5rem solid gray;
+border-radius: 0.5rem; */
 margin-right: 12%; 
 position: relative;
 top:10%;
@@ -59,10 +56,53 @@ export const Form = styled(AntDesignForm)`
 
 `
 export const Input = styled(AntDesignInput)`
+border: 2px solid gray;
+border-radius: 2rem;
+height:3rem;
+
 
 `
-export const Button = styled(AntDesignButton)`
+export const SignInButton = styled(AntDesignButton)`
 position: relative;
-z-index: 9999;
+background-color: #DEDAE8;
+padding-bottom:10px ;
+border-radius: 1rem;
+`
+export const SignUpButton = styled(AntDesignButton)`
+position: relative;
+background-color: transparent;
+border: .1rem gray solid;
+border-radius: 1rem;
 
 `
+export const LoginMessage = styled.h2`
+font-family: 'Calligraffitti', cursive;
+margin-bottom: 3rem;
+font-weight: 600;
+font-size: 2rem;
+
+
+`
+export const ButtonText = styled.h2`
+font-family: 'Calligraffitti', cursive;
+margin-bottom: 4rem;
+font-weight: 600;
+font-size: 1.5rem;
+
+
+`
+export const Divider = styled(AntDesignDivider)`
+position: absolute;
+top:0;
+`
+export const ButtonsContainer = styled.div`
+display: flex;
+width: 100%;
+justify-content: space-evenly;
+align-items: center;
+flex-direction: column;
+`
+
+export const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 },
+};

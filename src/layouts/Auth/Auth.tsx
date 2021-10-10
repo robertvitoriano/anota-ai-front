@@ -7,7 +7,6 @@ type Props = {
 
 export default function Auth({children}:Props){
 
-  console.log(children)
   return <Wrapper>
     {children}
     </Wrapper>

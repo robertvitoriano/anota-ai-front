@@ -1,3 +1,12 @@
-import SignIn from "../pages/Unauth/SignIn";
+import Login from './../pages/Unauth/SignIn'
 
-export default SignIn
+const routes = [
+  {
+    component:Login,
+    title:'Login',
+    path:'/login',
+    icon:''
+  }
+]
+
+export default routes
