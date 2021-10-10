@@ -1,3 +1,5 @@
+
+import {Link} from 'react-router-dom'
 import { FormContainer, Wrapper, Content, PresentationSection, FormSection, Input, SignInButton, LoginMessage, Divider, ButtonsContainer, SignUpButton, ButtonText, PasswordInput } from './styles'
 import { Form } from 'antd'
 import backgroundImage from 'assets/login_background.jpg'
@@ -34,7 +36,9 @@ const SignIn = () => {
                 </SignInButton>
               </Form.Item>
               <Form.Item>
-                <SignUpButton size={'large'} >Sign Up !</SignUpButton>
+                <SignUpButton size={'large'} >
+                  <Link to="/signup">Sign Up !</Link>
+                </SignUpButton>
               </Form.Item>
             </ButtonsContainer>
           </Form>

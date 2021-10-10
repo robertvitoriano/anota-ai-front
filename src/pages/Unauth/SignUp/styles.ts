@@ -1,5 +1,10 @@
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import { Input as AntDesignInput, Form as AntDesignForm, Button as AntDesignButton, Divider as AntDesignDivider } from "antd";
+import {
+  ArrowLeftOutlined
+} from '@ant-design/icons';
+
+import { Input as AntDesignInput, Form as AntDesignForm, Button as AntDesignButton,  Divider as AntDesignDivider } from "antd";
 interface Props {
   backgroundImage: any
 }
@@ -95,6 +100,7 @@ font-size: 1.5rem;
 export const Divider = styled(AntDesignDivider)`
 position: absolute;
 top:0;
+color:black;
 `
 export const ButtonsContainer = styled.div`
 display: flex;
@@ -107,3 +113,21 @@ flex-direction: column;
 export const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
+
+export const ReturnButtonContainer = styled.div``
+
+export const ReturnButtonIcon = styled(ArrowLeftOutlined)``
+
+export const ReturnButton = styled(Link)`
+ color:black;
+ &:hover{
+   text-decoration: underline;
+   color:black;
+ }
+`
+
+export const Label= styled.h2`
+font-family: 'Calligraffitti', cursive;
+font-weight: 600;
+font-size: 1rem;
+`
