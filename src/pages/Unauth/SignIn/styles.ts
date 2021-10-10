@@ -4,6 +4,11 @@ interface Props {
   backgroundImage: any
 }
 
+interface InputProps {
+  type: string
+
+}
+
 export const Wrapper = styled.div<Pick<Props, 'backgroundImage'>>`
 display: flex;
 justify-content: center;
@@ -59,8 +64,11 @@ export const Input = styled(AntDesignInput)`
 border: 2px solid gray;
 border-radius: 2rem;
 height:3rem;
-
-
+`
+export const PasswordInput = styled(AntDesignInput.Password)`
+border: 2px solid gray;
+border-radius: 2rem;
+height:3rem;
 `
 export const SignInButton = styled(AntDesignButton)`
 position: relative;

@@ -1,4 +1,4 @@
-import { FormContainer, Wrapper, Content, PresentationSection, FormSection, Input, SignInButton, LoginMessage, Divider, ButtonsContainer, SignUpButton, ButtonText } from './styles'
+import { FormContainer, Wrapper, Content, PresentationSection, FormSection, Input, SignInButton, LoginMessage, Divider, ButtonsContainer, SignUpButton, ButtonText, PasswordInput } from './styles'
 import { Form } from 'antd'
 import backgroundImage from 'assets/login_background.jpg'
 const SignIn = () => {
@@ -13,29 +13,33 @@ const SignIn = () => {
         <Divider>Login</Divider>
         <FormContainer>
           <LoginMessage >Let's write Some Notes</LoginMessage>
-          <Form>
-            <Form.Item>
-              <Input placeholder="Username" />
+          <Form
+            autoComplete="off"
+          >
+            <Form.Item
+              name="username"
+            >
+              <Input 
+              placeholder="Username" />
             </Form.Item>
             <Form.Item>
-              <Input placeholder="Password" />
+              <PasswordInput 
+              placeholder="Password" 
+              />
             </Form.Item>
             <ButtonsContainer>
-            <Form.Item>
-              <SignInButton size={'large'} >
-                <ButtonText>Login !</ButtonText>
+              <Form.Item>
+                <SignInButton size={'large'} >
+                  <ButtonText>Login !</ButtonText>
                 </SignInButton>
-            </Form.Item>
-            <Form.Item>
-              <SignUpButton size={'large'} >Sign Up !</SignUpButton>
-            </Form.Item>
+              </Form.Item>
+              <Form.Item>
+                <SignUpButton size={'large'} >Sign Up !</SignUpButton>
+              </Form.Item>
             </ButtonsContainer>
           </Form>
         </FormContainer>
-
       </FormSection>
-
-
     </Content>
 
 
