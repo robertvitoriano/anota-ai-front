@@ -4,7 +4,7 @@ import {
   Content,
   PresentationSection,
   FormSection, Input,
-  SignInButton,
+  SignUpButton,
   LoginMessage,
   Divider,
   ButtonsContainer,
@@ -19,6 +19,15 @@ import { Form } from 'antd'
 import backgroundImage from 'assets/login_background.jpg'
 const SignIn = () => {
 
+  const onFinish = (values: any) => {
+    alert(values.username + ' ' + values.password);
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
+
+
   return <Wrapper backgroundImage={backgroundImage}>
     <Content>
       <PresentationSection>
@@ -31,25 +40,38 @@ const SignIn = () => {
           <LoginMessage >Register yourself !</LoginMessage>
           <Form
             autoComplete="off"
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            initialValues={{ remember: true }}
+
           >
+            <Label>Username</Label>
             <Form.Item
               name="username"
+              rules={[{ required: true, message: 'Please input your username!' }]}
+
             >
-              <Label>Username</Label>
               <Input
-                placeholder="Type your username" />
+                placeholder="Type your username"
+                name="username"
+                />
             </Form.Item>
-            <Form.Item>
             <Label>Password</Label>
+            <Form.Item
+              name="password"
+              rules={[{ required: true, message: 'Please input your password!' }]}
+            >
               <PasswordInput
                 placeholder="Type your password"
+                name="password"
+
               />
             </Form.Item>
             <ButtonsContainer>
               <Form.Item>
-                <SignInButton size={'large'} >
+                <SignUpButton size={'large'} htmlType="submit">
                   <ButtonText>Sign Up !</ButtonText>
-                </SignInButton>
+                </SignUpButton>
               </Form.Item>
               <Form.Item>
                 <ReturnButtonContainer>

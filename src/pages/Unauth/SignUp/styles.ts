@@ -70,19 +70,13 @@ border: 2px solid gray;
 border-radius: 2rem;
 height:3rem;
 `
-export const SignInButton = styled(AntDesignButton)`
+export const SignUpButton = styled(AntDesignButton)`
 position: relative;
 background-color: #DEDAE8;
 padding-bottom:10px ;
 border-radius: 1rem;
 `
-export const SignUpButton = styled(AntDesignButton)`
-position: relative;
-background-color: transparent;
-border: .1rem gray solid;
-border-radius: 1rem;
 
-`
 export const LoginMessage = styled.h2`
 font-family: 'Calligraffitti', cursive;
 margin-bottom: 3rem;
