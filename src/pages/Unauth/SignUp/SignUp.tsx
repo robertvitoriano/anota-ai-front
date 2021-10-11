@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom'
 import {
   FormContainer,
   Wrapper,
@@ -19,14 +20,16 @@ import { Form } from 'antd'
 import backgroundImage from 'assets/login_background.jpg'
 const SignIn = () => {
 
+  const history = useHistory()
+
   const onFinish = (values: any) => {
     alert(values.username + ' ' + values.password);
+    history.push('/')
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
-
 
   return <Wrapper backgroundImage={backgroundImage}>
     <Content>
@@ -45,32 +48,22 @@ const SignIn = () => {
             initialValues={{ remember: true }}
 
           >
-            <Label>Username</Label>
+            <Label>E-mail !</Label>
             <Form.Item
-              name="username"
-              rules={[{ required: true, message: 'Please input your username!' }]}
+              name="email"
+              rules={[{ required: true, message: 'Please input your e-mail!' }]}
 
             >
               <Input
-                placeholder="Type your username"
-                name="username"
+                placeholder="Type your e-mail"
+                name="email"
                 />
             </Form.Item>
-            <Label>Password</Label>
-            <Form.Item
-              name="password"
-              rules={[{ required: true, message: 'Please input your password!' }]}
-            >
-              <PasswordInput
-                placeholder="Type your password"
-                name="password"
-
-              />
-            </Form.Item>
+          
             <ButtonsContainer>
               <Form.Item>
                 <SignUpButton size={'large'} htmlType="submit">
-                  <ButtonText>Sign Up !</ButtonText>
+                  <ButtonText>Send Sign Up E-mail !</ButtonText>
                 </SignUpButton>
               </Form.Item>
               <Form.Item>
