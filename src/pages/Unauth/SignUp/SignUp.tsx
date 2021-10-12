@@ -11,19 +11,19 @@ import {
   ButtonsContainer,
   ReturnButton,
   ButtonText,
-  PasswordInput,
   ReturnButtonContainer,
   ReturnButtonIcon,
   Label
 } from './styles'
 import { Form } from 'antd'
 import backgroundImage from 'assets/login_background.jpg'
+import api from 'services/api'
 const SignIn = () => {
 
   const history = useHistory()
 
-  const onFinish = (values: any) => {
-    alert(values.username + ' ' + values.password);
+  const onFinish = async (values: any) => {
+    const response = await api.post('/users',values);
     history.push('/')
   };
 
