@@ -23,8 +23,12 @@ const SignIn = () => {
   const history = useHistory()
 
   const onFinish = async (values: any) => {
-    const response = await api.post('/users',values);
-    history.push('/')
+    try{
+      const response = await api.post('/users',values);
+      history.push('/')
+    }catch(error){
+      console.error(error)
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -52,7 +56,6 @@ const SignIn = () => {
             <Form.Item
               name="email"
               rules={[{ required: true, message: 'Please input your e-mail!' }]}
-
             >
               <Input
                 placeholder="Type your e-mail"
