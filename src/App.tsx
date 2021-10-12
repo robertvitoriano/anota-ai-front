@@ -3,7 +3,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import LoginPage from 'pages/Unauth/SignUp'
+import LoginPage from 'pages/Unauth/SignIn'
 import { commonRoutes } from './routes';
 import { unauthRoutes } from './routes'
 
@@ -14,7 +14,6 @@ export default function App() {
     <Router>
       <Switch>
       <Route path="/" exact component={LoginPage} />
-
         {unauthRoutes.map((route, index) => (<Route  path={route.path} component={route.component} key={index} />))}
       </Switch>
       <AuthLayout>
