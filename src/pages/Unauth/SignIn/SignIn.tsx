@@ -22,9 +22,13 @@ const SignIn = () => {
 
       const response = await api.post('/users/login',values);
 
+      const { token, user } = response.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("userId", user._id);
+
       setIsLoading(false)
 
-      history.push('/notes')
+      // history.push('/notes')
 
     }catch(error:any){
       console.error(error)
