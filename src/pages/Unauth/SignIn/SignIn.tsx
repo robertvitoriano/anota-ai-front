@@ -1,22 +1,40 @@
 
+import React, {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import { FormContainer, Wrapper, Content, PresentationSection, FormSection, Input, SignInButton, LoginMessage, Divider, ButtonsContainer, SignUpButton, ButtonText, PasswordInput } from './styles'
 import { Form } from 'antd'
+import Swal from 'sweetalert2'
 import backgroundImage from 'assets/login_background.jpg'
 import api from 'services/api'
+import LoadingModal from 'components/LoadingModal'
+
+
 const SignIn = () => {
+
+  const [isLoading, setIsLoading] = useState<boolean>()
 
   const history = useHistory()
 
   const onFinish = async (values: any) => {
     try{
 
+      setIsLoading(true)
+
       const response = await api.post('/users/login',values);
-    
+
+      setIsLoading(false)
+
       history.push('/notes')
 
-    }catch(error){
+    }catch(error:any){
       console.error(error)
+      setIsLoading(false)
+
+      Swal.fire(
+        'Um erro aconteceu',
+         String(error.message),
+        'error'
+      )
     }
 
   };
@@ -27,6 +45,8 @@ const SignIn = () => {
 
 
   return <Wrapper backgroundImage={backgroundImage}>
+          {isLoading ? <LoadingModal show={isLoading} /> : ""}
+
     <Content>
       <PresentationSection>
         {/* <Title level={1}>Let's write Some Notes</Title> */}
