@@ -31,7 +31,7 @@ const SignIn = () => {
   const onFinish = async (values: any) => {
     try{
       setIsLoading(true);
-      const response = await api.post('/users',values);
+      await api.post('/users',values);
       setIsLoading(false);
        //@ts-ignore
       const email = document.getElementsByName('email')[0].value;
