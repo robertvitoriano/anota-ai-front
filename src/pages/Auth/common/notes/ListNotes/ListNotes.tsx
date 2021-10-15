@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import api from 'services/api'
-import { Wrapper, NameTitle } from './styles'
+import { Wrapper, NameTitle, Note, NotesContainer } from './styles'
 import backgroundImage from 'assets/notes_list_background.jpg'
 import LoadingModal from 'components/LoadingModal'
 
@@ -37,7 +37,7 @@ const ListNotes = () => {
         },
       });
 
-      const {notes} = response.data
+      const { notes } = response.data
 
       setNotes(notes)
 
@@ -52,9 +52,21 @@ const ListNotes = () => {
 
 
   return <Wrapper backgroundImage={backgroundImage}>
-              {isLoading ? <LoadingModal show={isLoading} /> : ""}
-
+    {isLoading ? <LoadingModal show={isLoading} /> : ""}
     <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
+    <NotesContainer>
+      <Note/>
+      <Note/>
+      <Note/>
+      <Note/>
+      <Note/>
+      <Note/>
+      <Note/>
+      <Note/>
+      <Note/>
+      
+    </NotesContainer>
+
   </Wrapper>
 }
 
