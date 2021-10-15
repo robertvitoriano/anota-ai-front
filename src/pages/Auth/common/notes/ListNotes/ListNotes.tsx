@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import api from 'services/api'
-import { Wrapper } from './styles'
+import { Wrapper, NameTitle } from './styles'
 import backgroundImage from 'assets/notes_list_background.jpg'
 import LoadingModal from 'components/LoadingModal'
 
@@ -54,7 +54,7 @@ const ListNotes = () => {
   return <Wrapper backgroundImage={backgroundImage}>
               {isLoading ? <LoadingModal show={isLoading} /> : ""}
 
-    <h1>Hello {userName}</h1>
+    <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
   </Wrapper>
 }
 
