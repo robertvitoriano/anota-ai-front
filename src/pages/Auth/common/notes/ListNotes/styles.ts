@@ -63,6 +63,7 @@ margin-top:5px;
   text-decoration: underline;
   cursor:pointer;
   }
+  color:black
 `
 
 export const NoteBody = styled.p`

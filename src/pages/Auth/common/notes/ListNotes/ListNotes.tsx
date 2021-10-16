@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import api from 'services/api'
 import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody } from './styles'
@@ -56,44 +57,14 @@ const ListNotes = () => {
     <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
     <NotesContainer>
       <Note>
-        <NoteTitle>Hello World</NoteTitle>
+        <Link to="/">
+          <NoteTitle>Hello World</NoteTitle>
+        </Link>
         <NoteBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
-        </NoteBody>
-      </Note>
-      <Note>
-        <NoteTitle>Hello World</NoteTitle>
-        <NoteBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
-        </NoteBody>
-      </Note>      <Note>
-        <NoteTitle>Hello World</NoteTitle>
-        <NoteBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
-        </NoteBody>
-      </Note>      <Note>
-        <NoteTitle>Hello World</NoteTitle>
-        <NoteBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
-        </NoteBody>
-      </Note>      <Note>
-        <NoteTitle>Hello World</NoteTitle>
-        <NoteBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
-        </NoteBody>
-      </Note>      <Note>
-        <NoteTitle>Hello World</NoteTitle>
-        <NoteBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
-        </NoteBody>
-      </Note>      <Note>
-        <NoteTitle>Hello World</NoteTitle>
-        <NoteBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
         </NoteBody>
       </Note>
     </NotesContainer>
-
   </Wrapper>
 }
 
