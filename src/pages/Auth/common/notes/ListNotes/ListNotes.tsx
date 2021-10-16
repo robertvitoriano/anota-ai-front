@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import api from 'services/api'
-import { Wrapper, NameTitle, Note, NotesContainer } from './styles'
+import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody } from './styles'
 import backgroundImage from 'assets/notes_list_background.jpg'
 import LoadingModal from 'components/LoadingModal'
 
@@ -55,16 +55,43 @@ const ListNotes = () => {
     {isLoading ? <LoadingModal show={isLoading} /> : ""}
     <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
     <NotesContainer>
-      <Note/>
-      <Note/>
-      <Note/>
-      <Note/>
-      <Note/>
-      <Note/>
-      <Note/>
-      <Note/>
-      <Note/>
-      
+      <Note>
+        <NoteTitle>Hello World</NoteTitle>
+        <NoteBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
+        </NoteBody>
+      </Note>
+      <Note>
+        <NoteTitle>Hello World</NoteTitle>
+        <NoteBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
+        </NoteBody>
+      </Note>      <Note>
+        <NoteTitle>Hello World</NoteTitle>
+        <NoteBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
+        </NoteBody>
+      </Note>      <Note>
+        <NoteTitle>Hello World</NoteTitle>
+        <NoteBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
+        </NoteBody>
+      </Note>      <Note>
+        <NoteTitle>Hello World</NoteTitle>
+        <NoteBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
+        </NoteBody>
+      </Note>      <Note>
+        <NoteTitle>Hello World</NoteTitle>
+        <NoteBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
+        </NoteBody>
+      </Note>      <Note>
+        <NoteTitle>Hello World</NoteTitle>
+        <NoteBody>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend. 
+        </NoteBody>
+      </Note>
     </NotesContainer>
 
   </Wrapper>

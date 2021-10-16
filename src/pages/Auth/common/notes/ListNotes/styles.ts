@@ -36,19 +36,41 @@ margin-top: 100px;
     width: 1em;
 }
 &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
+    background-color: transparent;
 
 }
 &::-webkit-scrollbar-thumb {
   background-color: #817059;
   border-radius:10px;
+  
 }
 
 `
 export const Note = styled.div`
 background-color: white;
 height: 200px;
+border:5px solid #242324;
+border-radius:15px;
+word-wrap: break-word;
+padding:0 10px;
+
 `
 
+export const NoteTitle = styled.h2`
+text-align: center;
+margin-top:5px;
+&:hover{
+  text-decoration: underline;
+  cursor:pointer;
+  }
+`
+
+export const NoteBody = styled.p`
+text-align: justify;
+margin-top:5px;
+&:hover{
+  text-decoration: underline;
+  cursor:pointer;
+  }
+`
 export const NoteContent = styled.div``
