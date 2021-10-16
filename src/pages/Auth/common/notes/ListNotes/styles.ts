@@ -68,9 +68,5 @@ margin-top:5px;
 export const NoteBody = styled.p`
 text-align: justify;
 margin-top:5px;
-&:hover{
-  text-decoration: underline;
-  cursor:pointer;
-  }
 `
 export const NoteContent = styled.div``
