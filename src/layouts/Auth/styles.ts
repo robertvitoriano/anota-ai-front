@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Layout } from 'antd';
 
 interface Props {
   backgroundImage:any
@@ -13,4 +14,8 @@ background-image: url('${(props) => props.backgroundImage}') ;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
+`
+
+export const Sider = styled(Layout.Sider)`
+
 `

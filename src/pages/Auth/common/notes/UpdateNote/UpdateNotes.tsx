@@ -1,8 +1,12 @@
-import React from 'react'
+import {Wrapper,
+NoteContainer} from './styled'
+ export default function UpdateNotes() {
 
-const UpdateNotes = () =>{
+   return (
+   <Wrapper>
+     <NoteContainer>
 
-  return <h1> Update Notes</h1>
-}
-
-export default UpdateNotes
+     </NoteContainer>
+   </Wrapper>
+   );
+ }
