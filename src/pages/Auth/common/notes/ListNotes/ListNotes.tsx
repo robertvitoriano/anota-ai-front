@@ -8,7 +8,7 @@ const ListNotes = () => {
 
   const [userName, setUserName] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [notes, setNotes] = useState(false)
+  const [notes, setNotes] = useState([])
 
 
   const getUserFirstaname = async () => {
@@ -22,7 +22,6 @@ const ListNotes = () => {
     }));
     setIsLoading(false)
     const { name } = response.data
-
     setUserName(name)
   }
   async function loadNotes() {
@@ -52,14 +51,14 @@ const ListNotes = () => {
     {isLoading ? <LoadingModal show={isLoading} /> : ""}
     <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
     <NotesContainer>
-      <Note>
-        <Link to="/note">
+      {notes.map(({id, title, body}) => <Note>
+        <Link to={`/note:${id}`}>
           <NoteTitle>Hello World</NoteTitle>
         </Link>
         <NoteBody>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
         </NoteBody>
-      </Note>
+      </Note>)}
     </NotesContainer>
   </Wrapper>
 }

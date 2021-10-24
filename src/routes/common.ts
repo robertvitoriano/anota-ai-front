@@ -12,7 +12,7 @@ const routes = [
   {
     component:UpdateNotes,
     title:'Anotações',
-    path:'/note',
+    path:'/note/:id',
     icon:''
   }
 ]
