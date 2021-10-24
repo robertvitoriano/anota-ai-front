@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import api from 'services/api'
 import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody } from './styles'
-import backgroundImage from 'assets/notes_list_background.jpg'
 import LoadingModal from 'components/LoadingModal'
 
 const ListNotes = () => {
@@ -49,7 +48,7 @@ const ListNotes = () => {
   }, [])
 
 
-  return <Wrapper backgroundImage={backgroundImage}>
+  return <Wrapper>
     {isLoading ? <LoadingModal show={isLoading} /> : ""}
     <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
     <NotesContainer>

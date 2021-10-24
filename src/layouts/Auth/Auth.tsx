@@ -9,6 +9,11 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 
+import {ContentContainer} from './styles'
+
+import backgroundImage from 'assets/notes_list_background.jpg'
+
+
 type Props = {
   children: React.ReactChild | React.ReactChild[]
 }
@@ -40,9 +45,9 @@ class SiderDemo extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Content>
-            <div className="site-layout-background" style={{ minHeight: 360 }}>
+            <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage = {backgroundImage}>
               {this.props.children}
-            </div>
+            </ContentContainer>
           </Content>
         </Layout>
       </Layout>

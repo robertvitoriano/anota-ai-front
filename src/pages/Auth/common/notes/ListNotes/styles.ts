@@ -1,17 +1,11 @@
 import styled from 'styled-components'
-interface Props {
-backgroundImage:any
-}
-export const Wrapper = styled.div<Pick<Props, 'backgroundImage'>>`
+
+export const Wrapper = styled.div`
 display: flex;
 align-items: center;
 flex-direction: column;
-background-image: url('${(props) => props.backgroundImage}') ;
 width: 100%;
 height: 100vh;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
 `
 export const NameTitle = styled.h1`
 font-family: 'Calligraffitti', cursive;
