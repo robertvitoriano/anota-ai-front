@@ -44,4 +44,6 @@ resize: none;
 height:100%;
 outline: none;
 padding: 1rem;
+border-radius:1.5rem;
+
 `
