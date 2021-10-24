@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import api from 'services/api';
 import LoadingModal from 'components/LoadingModal'
 import Swal from 'sweetalert2'
@@ -18,6 +18,8 @@ export default function UpdateNotes() {
   const [noteTitle, setNoteTitle] = useState('');
   const [noteBody, setNoteBody] = useState('');
   const [isLoading, setIsLoading] = useState(false)
+
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function UpdateNotes() {
         text: `Você criou uma anotação !`,
         icon: "success",
         confirmButtonText: 'Ok !'
-      })
+      }).then(()=> history.push('/notes'))
 
     } catch (error) {
       console.error(error)
