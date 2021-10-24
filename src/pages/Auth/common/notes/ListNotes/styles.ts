@@ -7,7 +7,7 @@ display: flex;
 align-items: center;
 flex-direction: column;
 background-image: url('${(props) => props.backgroundImage}') ;
-width: 100vw;
+width: 100%;
 height: 100vh;
 background-position: center;
 background-repeat: no-repeat;
@@ -21,8 +21,8 @@ font-size: 2.5rem;
 `
 
 export const NotesContainer = styled.div`
-width:90vw;
-height:80vh;
+width:80%;
+height:80%;
 list-style: none;
 display: grid;
 grid-template-columns: 28% 28% 28%;

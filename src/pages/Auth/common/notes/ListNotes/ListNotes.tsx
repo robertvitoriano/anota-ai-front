@@ -25,9 +25,6 @@ const ListNotes = () => {
     const { name } = response.data
 
     setUserName(name)
-
-    console.log('RESPONSE ', response)
-
   }
   async function loadNotes() {
     try {
@@ -57,6 +54,56 @@ const ListNotes = () => {
     <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
     <NotesContainer>
       <Note>
+        <Link to="/">
+          <NoteTitle>Hello World</NoteTitle>
+        </Link>
+        <NoteBody>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
+        </NoteBody>
+      </Note>
+      <Note>
+        <Link to="/">
+          <NoteTitle>Hello World</NoteTitle>
+        </Link>
+        <NoteBody>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
+        </NoteBody>
+      </Note>      <Note>
+        <Link to="/">
+          <NoteTitle>Hello World</NoteTitle>
+        </Link>
+        <NoteBody>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
+        </NoteBody>
+      </Note>      <Note>
+        <Link to="/">
+          <NoteTitle>Hello World</NoteTitle>
+        </Link>
+        <NoteBody>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
+        </NoteBody>
+      </Note>      <Note>
+        <Link to="/">
+          <NoteTitle>Hello World</NoteTitle>
+        </Link>
+        <NoteBody>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
+        </NoteBody>
+      </Note>      <Note>
+        <Link to="/">
+          <NoteTitle>Hello World</NoteTitle>
+        </Link>
+        <NoteBody>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
+        </NoteBody>
+      </Note>      <Note>
+        <Link to="/">
+          <NoteTitle>Hello World</NoteTitle>
+        </Link>
+        <NoteBody>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
+        </NoteBody>
+      </Note>      <Note>
         <Link to="/">
           <NoteTitle>Hello World</NoteTitle>
         </Link>
