@@ -65,3 +65,18 @@ text-align: justify;
 margin-top:5px;
 `
 export const NoteContent = styled.div``
+
+export const AddNoteButtonIcon = styled.img`
+width:180px;
+
+`
+
+export const AddNoteButton = styled.div`
+height: 200px;
+display: flex;
+justify-content: center;
+align-items: center;
+&:hover{
+  cursor: pointer;
+}
+`

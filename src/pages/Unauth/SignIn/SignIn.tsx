@@ -24,7 +24,7 @@ const SignIn = () => {
 
       const { token, user } = response.data;
 
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", 'Bearer '+token);
       localStorage.setItem("userId", user._id);
 
       setIsLoading(false)

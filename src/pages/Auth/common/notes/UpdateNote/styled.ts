@@ -35,6 +35,8 @@ width:30vw;
 height:8vh;
 border-radius:1.5rem;
 margin-bottom: 5px;
+padding-left: 1rem;
+
 
 `
 export const NoteBodyTextArea = styled.textarea`
@@ -45,5 +47,19 @@ height:100%;
 outline: none;
 padding: 1rem;
 border-radius:1.5rem;
+
+`
+
+export const CreateNoteButton = styled.div`
+&:hover{
+    cursor: pointer;
+}
+border-radius: 5%;
+background-color: #F1D9CF;
+padding: 1rem;
+font-weight: bolder;
+font-family: 'Calligraffitti', cursive;
+font-size: 1.5rem;
+
 
 `

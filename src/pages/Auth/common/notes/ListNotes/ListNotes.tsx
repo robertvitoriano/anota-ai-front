@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import api from 'services/api'
-import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody } from './styles'
+import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody, AddNoteButton, AddNoteButtonIcon } from './styles'
 import LoadingModal from 'components/LoadingModal'
+import backgroundImage from 'assets/plus-sign.png'
+
 
 const ListNotes = () => {
 
@@ -16,7 +18,7 @@ const ListNotes = () => {
     const response = (await api.get("/users/me", {
       headers: {
         //@ts-ignore
-        token: localStorage.getItem("token")
+        authorization: localStorage.getItem("token")
 
       },
     }));
@@ -29,11 +31,12 @@ const ListNotes = () => {
       const response = await api.get("/notes", {
         headers: {
           //@ts-ignore
-          token: localStorage.getItem("token"),
+          authorization: localStorage.getItem("token"),
         },
       });
 
-      const { notes } = response.data
+
+      const  notes = response.data
 
       setNotes(notes)
 
@@ -51,14 +54,19 @@ const ListNotes = () => {
     {isLoading ? <LoadingModal show={isLoading} /> : ""}
     <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
     <NotesContainer>
-      {notes.map(({id, title, body}) => <Note>
-        <Link to={`/note:${id}`}>
+      {notes && notes.map(({ id, title, body }) => <Note>
+        <Link to={`/note/${id}`}>
           <NoteTitle>Hello World</NoteTitle>
         </Link>
         <NoteBody>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
         </NoteBody>
       </Note>)}
+      <Link to={`/note/create`}>
+      <AddNoteButton>
+        <AddNoteButtonIcon src={backgroundImage} />
+      </AddNoteButton>
+      </Link>
     </NotesContainer>
   </Wrapper>
 }
