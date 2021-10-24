@@ -59,7 +59,7 @@ const ListNotes = () => {
           <NoteTitle>{title}</NoteTitle>
         </Link>
         <NoteBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus bibendum lectus eu placerat. Duis eu pulvinar nibh. Sed ullamcorper sodales turpis non eleifend.
+          {body}
         </NoteBody>
       </Note>)}
       <Link to={`/note/create`}>
