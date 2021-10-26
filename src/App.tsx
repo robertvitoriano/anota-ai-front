@@ -11,6 +11,7 @@ import { AuthLayout } from "layouts";
 
 export default function App() {
   return (
+    // TODO: VERIFY IF THE USER IS LOGGED IN BY CHECKING TOKEN IN REDUX
     <Router>
       <div>
         <Switch>
