@@ -16,9 +16,9 @@ import {
 export default function UpdateNotes() {
 
    
-  const [noteTitle, setNoteTitle] = useState();
-  const [noteBody, setNoteBody] = useState();
-  const [isLoading, setIsLoading] = useState(false)
+  const [noteTitle, setNoteTitle] = useState<string>();
+  const [noteBody, setNoteBody] = useState<string>();
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const history = useHistory();
 
