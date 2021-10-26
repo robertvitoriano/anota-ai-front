@@ -1,3 +1,5 @@
-export default function{
-  console.log('Hello World')
-}
+import { configureStore } from '@reduxjs/toolkit'
+
+export default configureStore({
+  reducer: {},
+})
