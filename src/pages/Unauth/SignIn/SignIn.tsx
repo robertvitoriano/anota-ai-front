@@ -19,6 +19,7 @@ import { Form } from 'antd'
 import Swal from 'sweetalert2'
 import backgroundImage from 'assets/login_background.jpg'
 import mobileBackgroundImage from 'mobile_login_background.png'
+import { PhoneBreakPoint } from 'components/responsive_utilities'
 
 import api from 'services/api'
 import LoadingModal from 'components/LoadingModal'
@@ -114,8 +115,10 @@ const SignIn = () => {
         </FormSection>
       </Content>
     </Wrapper>
-    {/* <MobileWrapper backgroundImage={mobileBackgroundImage}>
-    </MobileWrapper> */}
+    <PhoneBreakPoint>
+      <MobileWrapper backgroundImage={mobileBackgroundImage}>
+      </MobileWrapper>
+    </PhoneBreakPoint>
   </>
 }
 
