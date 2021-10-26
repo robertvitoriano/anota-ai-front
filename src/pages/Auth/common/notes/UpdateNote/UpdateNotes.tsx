@@ -15,8 +15,9 @@ import {
 } from './styled'
 export default function UpdateNotes() {
 
-  const [noteTitle, setNoteTitle] = useState('');
-  const [noteBody, setNoteBody] = useState('');
+   
+  const [noteTitle, setNoteTitle] = useState();
+  const [noteBody, setNoteBody] = useState();
   const [isLoading, setIsLoading] = useState(false)
 
   const history = useHistory();
@@ -27,14 +28,26 @@ export default function UpdateNotes() {
   }, []);
 
   // @ts-ignore
-  const { noteId } = useParams();
+  const { id } = useParams();
 
   const fetchNote = async () => {
-    if (noteId !== 'create') {
+    if (id !== 'create') {
+      setIsLoading(true)
+
       //@ts-ignore
-      const { title, body } = await api.get(`/notes/${noteId}`);
+      const response = await api.get(`/notes/${id}`, {
+        headers: {
+          authorization: String(localStorage.getItem('token'))
+        }
+      });
+      
+      
+      const {title, body } = response.data;
+      
       setNoteTitle(title);
       setNoteBody(body);
+      
+      setIsLoading(false)
     }
   }
 
@@ -73,9 +86,9 @@ export default function UpdateNotes() {
       {isLoading ? <LoadingModal show={isLoading} /> : ""}
       <PageTitle>Let's Write a Note !</PageTitle>
       <NoteContainer>
-        <NoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
+        <NoteTitleInput value={noteTitle} onChange = {(event)=>setNoteTitle(event.target.value)} />
         <NoteBody>
-          <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
+          <NoteBodyTextArea value={noteBody} onChange = {(event)=>setNoteBody(event.target.value)}  />
         </NoteBody>
       </NoteContainer>
       <CreateNoteButton onClick={() => createNote()}>Create Note</CreateNoteButton>

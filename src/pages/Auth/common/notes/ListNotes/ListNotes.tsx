@@ -12,7 +12,6 @@ const ListNotes = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [notes, setNotes] = useState([])
 
-
   const getUserFirstaname = async () => {
     setIsLoading(true)
     const response = (await api.get("/users/me", {
@@ -34,7 +33,6 @@ const ListNotes = () => {
           authorization: localStorage.getItem("token"),
         },
       });
-
 
       const  notes = response.data
 
@@ -59,8 +57,9 @@ const ListNotes = () => {
       {isLoading ? <LoadingModal show={isLoading} /> : ""}
       <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
       <NotesContainer>
-        {notes && notes.map(({ id, title, body }) => <Note>
-          <Link to={`/note/${id}`}>
+        {notes && notes.map(({ _id, title, body }) => 
+        <Note key ={_id}>
+          <Link to={{pathname:`/note/${_id}`, state:{title, body}}}  >
             <NoteTitle>{title}</NoteTitle>
           </Link>
           <NoteBody>
