@@ -1,6 +1,7 @@
-export const signin = (token:string) => ({
-  type: 'SIGNIN_REQUESTED',
+export const signin = (token:string) =>{
+  console.log('Token ', token)
+ return { type: 'SIGNIN_REQUESTED',
   payload: {
    token,
-  }
-})
+  }}
+}

@@ -1,7 +1,8 @@
 
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import {useDispatch } from 'react-redux'
+import { setToken } from 'store/modules/auth/reducer'
 
 import {
   FormContainer,
@@ -32,6 +33,8 @@ const SignIn = () => {
 
   const history = useHistory()
 
+  const dispatch = useDispatch()
+
   const onFinish = async (values: any) => {
     try {
 
@@ -43,7 +46,7 @@ const SignIn = () => {
 
       localStorage.setItem("token", 'Bearer ' + token);
       localStorage.setItem("userId", user._id);
-
+      dispatch(setToken(token))
       setIsLoading(false)
 
       history.push('/notes')

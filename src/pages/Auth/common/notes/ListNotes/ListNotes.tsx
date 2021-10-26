@@ -47,6 +47,9 @@ const ListNotes = () => {
   useEffect(() => {
     getUserFirstaname()
     loadNotes()
+    return function cleanup() {
+      console.log('cleanup')
+  }
   }, [])
 
 
