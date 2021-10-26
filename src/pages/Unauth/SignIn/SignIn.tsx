@@ -18,8 +18,8 @@ import {
 import { Form } from 'antd'
 import Swal from 'sweetalert2'
 import backgroundImage from 'assets/login_background.jpg'
-import mobileBackgroundImage from 'mobile_login_background.png'
-import { PhoneBreakPoint } from 'components/responsive_utilities'
+import mobileBackgroundImage from 'assets/mobile_login_background.png'
+import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 
 import api from 'services/api'
 import LoadingModal from 'components/LoadingModal'
@@ -66,55 +66,57 @@ const SignIn = () => {
 
 
   return <>
-    <Wrapper backgroundImage={backgroundImage}>
-      {isLoading ? <LoadingModal show={isLoading} /> : ""}
+    <DesktopBreakPoint>
+      <Wrapper backgroundImage={backgroundImage}>
+        {isLoading ? <LoadingModal show={isLoading} /> : ""}
 
-      <Content>
-        <PresentationSection>
-          {/* <Title level={1}>Let's write Some Notes</Title> */}
-        </PresentationSection>
-        <FormSection>
-          <Divider>Login</Divider>
-          <FormContainer>
-            <LoginMessage >Let's write Some Notes</LoginMessage>
-            <Form
-              autoComplete="off"
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-            >
-              <Form.Item
-                name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
+        <Content>
+          <PresentationSection>
+            {/* <Title level={1}>Let's write Some Notes</Title> */}
+          </PresentationSection>
+          <FormSection>
+            <Divider>Login</Divider>
+            <FormContainer>
+              <LoginMessage >Let's write Some Notes</LoginMessage>
+              <Form
+                autoComplete="off"
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+              >
+                <Form.Item
+                  name="username"
+                  rules={[{ required: true, message: 'Please input your username!' }]}
 
-              >
-                <Input
-                  placeholder="Username" />
-              </Form.Item>
-              <Form.Item
-                name="password"
-                rules={[{ required: true, message: 'Please input your password!' }]}
-              >
-                <PasswordInput
-                  placeholder="Password"
-                />
-              </Form.Item>
-              <ButtonsContainer>
-                <Form.Item>
-                  <SignInButton size={'large'} htmlType='submit' >
-                    <ButtonText>Login !</ButtonText>
-                  </SignInButton>
+                >
+                  <Input
+                    placeholder="Username" />
                 </Form.Item>
-                <Form.Item>
-                  <SignUpButton size={'large'}  >
-                    <Link to="/signup">Sign Up !</Link>
-                  </SignUpButton>
+                <Form.Item
+                  name="password"
+                  rules={[{ required: true, message: 'Please input your password!' }]}
+                >
+                  <PasswordInput
+                    placeholder="Password"
+                  />
                 </Form.Item>
-              </ButtonsContainer>
-            </Form>
-          </FormContainer>
-        </FormSection>
-      </Content>
-    </Wrapper>
+                <ButtonsContainer>
+                  <Form.Item>
+                    <SignInButton size={'large'} htmlType='submit' >
+                      <ButtonText>Login !</ButtonText>
+                    </SignInButton>
+                  </Form.Item>
+                  <Form.Item>
+                    <SignUpButton size={'large'}  >
+                      <Link to="/signup">Sign Up !</Link>
+                    </SignUpButton>
+                  </Form.Item>
+                </ButtonsContainer>
+              </Form>
+            </FormContainer>
+          </FormSection>
+        </Content>
+      </Wrapper>
+    </DesktopBreakPoint>
     <PhoneBreakPoint>
       <MobileWrapper backgroundImage={mobileBackgroundImage}>
       </MobileWrapper>
