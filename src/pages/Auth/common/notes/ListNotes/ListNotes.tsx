@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import api from 'services/api'
 import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody, AddNoteButton, AddNoteButtonIcon } from './styles'
 import LoadingModal from 'components/LoadingModal'
-import backgroundImage from 'assets/plus-sign.png'
+import plusSign from 'assets/plus-sign.png'
 
 
 const ListNotes = () => {
@@ -50,25 +50,30 @@ const ListNotes = () => {
   }, [])
 
 
-  return <Wrapper>
-    {isLoading ? <LoadingModal show={isLoading} /> : ""}
-    <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
-    <NotesContainer>
-      {notes && notes.map(({ id, title, body }) => <Note>
-        <Link to={`/note/${id}`}>
-          <NoteTitle>{title}</NoteTitle>
+  return (
+    <>
+    <Wrapper>
+      {isLoading ? <LoadingModal show={isLoading} /> : ""}
+      <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
+      <NotesContainer>
+        {notes && notes.map(({ id, title, body }) => <Note>
+          <Link to={`/note/${id}`}>
+            <NoteTitle>{title}</NoteTitle>
+          </Link>
+          <NoteBody>
+            {body}
+          </NoteBody>
+        </Note>)}
+        <Link to={`/note/create`}>
+        <AddNoteButton>
+          <AddNoteButtonIcon src={plusSign} />
+        </AddNoteButton>
         </Link>
-        <NoteBody>
-          {body}
-        </NoteBody>
-      </Note>)}
-      <Link to={`/note/create`}>
-      <AddNoteButton>
-        <AddNoteButtonIcon src={backgroundImage} />
-      </AddNoteButton>
-      </Link>
-    </NotesContainer>
-  </Wrapper>
+      </NotesContainer>
+    </Wrapper>
+  </>
+  )
+
 }
 
 export default ListNotes

@@ -107,3 +107,16 @@ flex-direction: column;
 export const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
+
+export const MobileWrapper = styled.div<Pick<Props, 'backgroundImage'>>`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-image: url('${(props) => props.backgroundImage}') ;
+width: 100vw;
+height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+`
