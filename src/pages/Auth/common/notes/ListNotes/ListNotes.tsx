@@ -4,6 +4,7 @@ import api from 'services/api'
 import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody, AddNoteButton, AddNoteButtonIcon } from './styles'
 import LoadingModal from 'components/LoadingModal'
 import plusSign from 'assets/plus-sign.png'
+import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 
 
 const ListNotes = () => {
@@ -34,7 +35,7 @@ const ListNotes = () => {
         },
       });
 
-      const  notes = response.data
+      const notes = response.data
 
       setNotes(notes)
 
@@ -47,33 +48,57 @@ const ListNotes = () => {
     loadNotes()
     return function cleanup() {
       console.log('cleanup')
-  }
+    }
   }, [])
 
 
   return (
     <>
-    <Wrapper>
-      {isLoading ? <LoadingModal show={isLoading} /> : ""}
-      <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
-      <NotesContainer>
-        {notes && notes.map(({ _id, title, body }) => 
-        <Note key ={_id}>
-          <Link to={{pathname:`/note/${_id}`, state:{title, body}}}  >
-            <NoteTitle>{title}</NoteTitle>
-          </Link>
-          <NoteBody>
-            {body}
-          </NoteBody>
-        </Note>)}
-        <Link to={`/note/create`}>
-        <AddNoteButton>
-          <AddNoteButtonIcon src={plusSign} />
-        </AddNoteButton>
-        </Link>
-      </NotesContainer>
-    </Wrapper>
-  </>
+      <DesktopBreakPoint>
+        <Wrapper>
+          {isLoading ? <LoadingModal show={isLoading} /> : ""}
+          <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
+          <NotesContainer>
+            {notes && notes.map(({ _id, title, body }) =>
+              <Note key={_id}>
+                <Link to={{ pathname: `/note/${_id}`, state: { title, body } }}  >
+                  <NoteTitle>{title}</NoteTitle>
+                </Link>
+                <NoteBody>
+                  {body}
+                </NoteBody>
+              </Note>)}
+            <Link to={`/note/create`}>
+              <AddNoteButton>
+                <AddNoteButtonIcon src={plusSign} />
+              </AddNoteButton>
+            </Link>
+          </NotesContainer>
+        </Wrapper>
+      </DesktopBreakPoint>
+      <PhoneBreakPoint>
+        <Wrapper>
+          {isLoading ? <LoadingModal show={isLoading} /> : ""}
+          <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
+          <NotesContainer>
+            {notes && notes.map(({ _id, title, body }) =>
+              <Note key={_id}>
+                <Link to={{ pathname: `/note/${_id}`, state: { title, body } }}  >
+                  <NoteTitle>{title}</NoteTitle>
+                </Link>
+                <NoteBody>
+                  {body}
+                </NoteBody>
+              </Note>)}
+            <Link to={`/note/create`}>
+              <AddNoteButton>
+                <AddNoteButtonIcon src={plusSign} />
+              </AddNoteButton>
+            </Link>
+          </NotesContainer>
+        </Wrapper>
+      </PhoneBreakPoint>
+    </>
   )
 
 }
