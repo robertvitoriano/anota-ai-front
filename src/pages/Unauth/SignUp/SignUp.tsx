@@ -123,7 +123,6 @@ const SignIn = () => {
         <MobileWrapper backgroundImage={mobileBackgroundImage}>
           {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <FormSection>
-              <Divider>Sign Up !</Divider>
               <FormContainer>
                 <LoginMessage >Register yourself !</LoginMessage>
                 <Form
