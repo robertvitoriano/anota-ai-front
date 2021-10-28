@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import {useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setToken } from 'store/modules/auth/reducer'
 
 import {
@@ -123,6 +123,46 @@ const SignIn = () => {
     </DesktopBreakPoint>
     <PhoneBreakPoint>
       <MobileWrapper backgroundImage={mobileBackgroundImage}>
+        {isLoading ? <LoadingModal show={isLoading} /> : ""}
+          <FormSection mobile>
+            <FormContainer>
+              <LoginMessage >Let's write Some Notes</LoginMessage>
+              <Form
+                autoComplete="off"
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+              >
+                <Form.Item
+                  name="username"
+                  rules={[{ required: true, message: 'Please input your username!' }]}
+
+                >
+                  <Input
+                    placeholder="Username" />
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  rules={[{ required: true, message: 'Please input your password!' }]}
+                >
+                  <PasswordInput
+                    placeholder="Password"
+                  />
+                </Form.Item>
+                <ButtonsContainer>
+                  <Form.Item>
+                    <SignInButton size={'large'} htmlType='submit' >
+                      <ButtonText>Login !</ButtonText>
+                    </SignInButton>
+                  </Form.Item>
+                  <Form.Item>
+                    <SignUpButton size={'large'}  >
+                      <Link to="/signup">Sign Up !</Link>
+                    </SignUpButton>
+                  </Form.Item>
+                </ButtonsContainer>
+              </Form>
+            </FormContainer>
+          </FormSection>
       </MobileWrapper>
     </PhoneBreakPoint>
   </>

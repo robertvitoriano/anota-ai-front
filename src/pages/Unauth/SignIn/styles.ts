@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import { Input as AntDesignInput, Form as AntDesignForm, Button as AntDesignButton, Divider as AntDesignDivider } from "antd";
+import { FileProtectOutlined } from '@ant-design/icons';
 interface Props {
   backgroundImage: any
+}
+interface FormSectionProps {
+  mobile?: boolean
 }
 
 export const Wrapper = styled.div<Pick<Props, 'backgroundImage'>>`
@@ -21,7 +25,7 @@ export const FormContainer = styled.div`
 `
 export const Content = styled.div`
 display: flex;
-justify-content: space-between;
+justify-content:space-between;
 align-items: center;
 flex-direction: row;
 width: 100%;
@@ -39,7 +43,7 @@ height: 100%;
 `
 
 export const FormSection = styled.div`
-width: 40%;
+width: ${({mobile}:FormSectionProps)=>(mobile ? '100%' : '40%')};
 height: 80%;
 display: flex;
 justify-content: center;
@@ -47,7 +51,7 @@ align-items: center;
 flex-direction: column;
 /* border: .5rem solid gray;
 border-radius: 0.5rem; */
-margin-right: 12%; 
+margin-right:${({mobile}:FormSectionProps)=>(mobile ? '0%' : '12%')}; 
 position: relative;
 top:10%;
 
