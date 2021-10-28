@@ -8,6 +8,9 @@ import { Input as AntDesignInput, Form as AntDesignForm, Button as AntDesignButt
 interface Props {
   backgroundImage: any
 }
+interface FormSectionProps {
+  mobile?: boolean
+}
 
 export const Wrapper = styled.div<Pick<Props, 'backgroundImage'>>`
 display: flex;
@@ -44,7 +47,7 @@ height: 100%;
 `
 
 export const FormSection = styled.div`
-width: 40%;
+width: ${({mobile}:FormSectionProps)=>(mobile ? '100%' : '40%')};
 height: 80%;
 display: flex;
 justify-content: center;
@@ -52,7 +55,7 @@ align-items: center;
 flex-direction: column;
 /* border: .5rem solid gray;
 border-radius: 0.5rem; */
-margin-right: 12%; 
+margin-right:${({mobile}:FormSectionProps)=>(mobile ? '0%' : '12%')}; 
 position: relative;
 top:10%;
 
@@ -124,4 +127,16 @@ export const Label= styled.h2`
 font-family: 'Calligraffitti', cursive;
 font-weight: 600;
 font-size: 1rem;
+`
+export const MobileWrapper = styled.div<Pick<Props, 'backgroundImage'>>`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-image: url('${(props) => props.backgroundImage}') ;
+width: 100vw;
+height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 `
