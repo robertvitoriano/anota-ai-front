@@ -18,15 +18,22 @@ export default function App() {
 
   return (
     <Router>
-      {!localStorage.getItem('token')? 
-      <Switch>
-        <Route path={"/"} exact component={LoginPage} />
-        {unauthRoutes.map((route, index) => (<Route path={route.path} component={route.component} key={index} />))}
-      </Switch> :
+      {token ?
+        <Switch>
+          <Route path={"/"} exact component={LoginPage} />
+          {unauthRoutes.map((route, index) => (<Route path={route.path} component={route.component} key={index} />))}
+        </Switch> :
         <AuthLayout>
           <Switch>
-            <Route path={"/"} exact component={ListNotes} />
-            {commonRoutes.map((route, index) => (<Route path={route.path} component={route.component} key={index} />))}
+            <Route
+              path={"/"}
+              exact
+              component={ListNotes} />
+            {commonRoutes.map((route, index) => (<Route
+              exact
+              path={route.path}
+              component={route.component}
+              key={index} />))}
           </Switch>
         </AuthLayout>}
     </Router>

@@ -46,7 +46,7 @@ const SignIn = () => {
 
       localStorage.setItem("token", 'Bearer ' + token);
       localStorage.setItem("userId", user._id);
-      dispatch(setToken(token))
+      dispatch(setToken(token));
       setIsLoading(false)
 
       history.push('/notes')
