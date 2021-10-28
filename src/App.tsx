@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <Router>
-      {token ?
+      {!token ?
         <Switch>
           <Route path={"/"} exact component={LoginPage} />
           {unauthRoutes.map((route, index) => (<Route path={route.path} component={route.component} key={index} />))}
