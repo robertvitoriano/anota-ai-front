@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Layout as AndDesignLayout, Menu } from 'antd';
 import { PieChartOutlined } from '@ant-design/icons';
 
-import { ContentContainer, Sider } from './styles'
+import { ContentContainer, Sider, MobileContentContainer } from './styles'
 
 import backgroundImage from 'assets/notes_list_background.jpg'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
@@ -45,9 +45,9 @@ export default function Layout({ children }: Props) {
       <PhoneBreakPoint>
         <AndDesignLayout className="site-layout">
           <Content>
-            <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage}>
+            <MobileContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage} >
               {children}
-            </ContentContainer>
+            </MobileContentContainer>
           </Content>
         </AndDesignLayout>
       </PhoneBreakPoint>
