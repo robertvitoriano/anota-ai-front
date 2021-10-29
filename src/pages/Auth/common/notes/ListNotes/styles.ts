@@ -1,4 +1,8 @@
 import styled from 'styled-components'
+interface AddNoteButtonProps {
+  mobile?: boolean
+}
+
 
 export const Wrapper = styled.div`
 display: flex;
@@ -60,16 +64,12 @@ margin-top:5px;
   color:black
 `
 
+
 export const NoteBody = styled.p`
 text-align: justify;
 margin-top:5px;
 `
 export const NoteContent = styled.div``
-
-export const AddNoteButtonIcon = styled.img`
-width:180px;
-
-`
 
 export const AddNoteButton = styled.div`
 height: 200px;
@@ -79,4 +79,20 @@ align-items: center;
 &:hover{
   cursor: pointer;
 }
+position: ${({mobile}:AddNoteButtonProps)=>(mobile?'absolute':'relative')};
+top: ${({mobile}:AddNoteButtonProps)=>(mobile?'55px':'none')};
+right: ${({mobile}:AddNoteButtonProps)=>(mobile?'0':'none')};
+
+
+`
+
+export const AddNoteButtonIcon = styled.img`
+width: ${({mobile}:AddNoteButtonProps)=>(mobile?'50px':'200px')};
+;
+
+`
+export const MobileNotesContainer = styled.div`
+height: 100%;
+overflow: auto;
+
 `

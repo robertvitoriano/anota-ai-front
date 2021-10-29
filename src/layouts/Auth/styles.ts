@@ -15,6 +15,10 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 `
+export const MobileContentContainer =styled(ContentContainer)`
+background-position: 15px;
+
+`
 
 export const Sider = styled(Layout.Sider)`
 

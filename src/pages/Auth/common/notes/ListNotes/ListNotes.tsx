@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import api from 'services/api'
-import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody, AddNoteButton, AddNoteButtonIcon } from './styles'
+import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody, AddNoteButton, AddNoteButtonIcon, MobileNotesContainer } from './styles'
 import LoadingModal from 'components/LoadingModal'
 import plusSign from 'assets/plus-sign.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
@@ -79,8 +79,8 @@ const ListNotes = () => {
       <PhoneBreakPoint>
         <Wrapper>
           {isLoading ? <LoadingModal show={isLoading} /> : ""}
-          <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
-          <NotesContainer>
+          <NameTitle>Olá {userName.split(' ')[0]}</NameTitle>
+          <MobileNotesContainer>
             {notes && notes.map(({ _id, title, body }) =>
               <Note key={_id}>
                 <Link to={{ pathname: `/note/${_id}`, state: { title, body } }}  >
@@ -91,11 +91,11 @@ const ListNotes = () => {
                 </NoteBody>
               </Note>)}
             <Link to={`/note/create`}>
-              <AddNoteButton>
-                <AddNoteButtonIcon src={plusSign} />
+              <AddNoteButton mobile >
+                <AddNoteButtonIcon src={plusSign} mobile />
               </AddNoteButton>
             </Link>
-          </NotesContainer>
+          </MobileNotesContainer>
         </Wrapper>
       </PhoneBreakPoint>
     </>
