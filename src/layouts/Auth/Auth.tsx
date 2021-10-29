@@ -43,7 +43,13 @@ export default function Layout({ children }: Props) {
         </AndDesignLayout>
       </DesktopBreakPoint>
       <PhoneBreakPoint>
-        {children}
+        <AndDesignLayout className="site-layout">
+          <Content>
+            <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage}>
+              {children}
+            </ContentContainer>
+          </Content>
+        </AndDesignLayout>
       </PhoneBreakPoint>
     </>
   );
