@@ -79,15 +79,10 @@ align-items: center;
 &:hover{
   cursor: pointer;
 }
-position: ${({mobile}:AddNoteButtonProps)=>(mobile?'absolute':'relative')};
-top: ${({mobile}:AddNoteButtonProps)=>(mobile?'55px':'none')};
-right: ${({mobile}:AddNoteButtonProps)=>(mobile?'0':'none')};
-
-
 `
 
 export const AddNoteButtonIcon = styled.img`
-width: ${({mobile}:AddNoteButtonProps)=>(mobile?'50px':'200px')};
+width: 200px;
 ;
 
 `
@@ -95,4 +90,34 @@ export const MobileNotesContainer = styled.div`
 height: 100%;
 overflow: auto;
 
+`
+
+export const MobileAddNoteButton = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+&:hover{
+  cursor: pointer;
+}
+padding: .5rem;
+background-color: white;
+border:1px solid #242324;
+width: 60vw;
+border-radius: 1rem;
+margin-bottom: 2rem;
+
+`
+
+export const MobileAddNoteButtonIcon = styled.img`
+width: 40px;
+`
+export const MobileAddNoteButtonText = styled.span`
+color:black;
+font-family: 'Calligraffitti', cursive;
+font-weight: bold;
+font-size: 1rem;
+`
+export const MobileAddNoteButtonTextContainer = styled.div`
+text-align: center;
+width: 100%;
 `
