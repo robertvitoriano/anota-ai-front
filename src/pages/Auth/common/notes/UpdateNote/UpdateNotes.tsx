@@ -35,11 +35,7 @@ export default function UpdateNotes() {
       setIsLoading(true)
 
       //@ts-ignore
-      const response = await api.get(`/notes/${id}`, {
-        headers: {
-          authorization: String(localStorage.getItem('token'))
-        }
-      });
+      const response = await api.get(`/notes/${id}`);
       
       
       const {title, body } = response.data;
@@ -57,12 +53,7 @@ export default function UpdateNotes() {
       setIsLoading(true)
 
       //@ts-ignore
-      await api.post('/notes', { title: noteTitle, body: noteBody }, {
-        headers: {
-          authorization: String(localStorage.getItem('token'))
-        }
-        //@ts-ignore
-      });
+      await api.post('/notes', { title: noteTitle, body: noteBody });
       setIsLoading(false)
       Swal.fire({
         title: "Anotação criada com sucesso !",
