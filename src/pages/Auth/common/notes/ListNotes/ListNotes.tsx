@@ -23,25 +23,14 @@ const ListNotes = () => {
 
   const getUserFirstaname = async () => {
     setIsLoading(true)
-    const response = (await api.get("/users/me", {
-      headers: {
-        //@ts-ignore
-        authorization: localStorage.getItem("token")
-
-      },
-    }));
+    const response = (await api.get("/users/me"));
     setIsLoading(false)
     const { name } = response.data
     setUserName(name)
   }
   async function loadNotes() {
     try {
-      const response = await api.get("/notes", {
-        headers: {
-          //@ts-ignore
-          authorization: localStorage.getItem("token"),
-        },
-      });
+      const response = await api.get("/notes");
 
       const notes = response.data
 
