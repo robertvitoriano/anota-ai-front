@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import api from 'services/api'
-import { Wrapper, NameTitle, Note, NotesContainer, NoteTitle, NoteBody, AddNoteButton, AddNoteButtonIcon, MobileNotesContainer } from './styles'
+import { Wrapper,
+         NameTitle, 
+         Note, 
+         NotesContainer, 
+         NoteTitle, 
+         NoteBody, 
+         AddNoteButton, 
+         AddNoteButtonIcon, 
+         MobileNotesContainer } from './styles'
 import LoadingModal from 'components/LoadingModal'
 import plusSign from 'assets/plus-sign.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
