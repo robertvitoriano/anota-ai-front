@@ -1,15 +1,21 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import api from 'services/api'
-import { Wrapper,
-         NameTitle, 
-         Note, 
-         NotesContainer, 
-         NoteTitle, 
-         NoteBody, 
-         AddNoteButton, 
-         AddNoteButtonIcon, 
-         MobileNotesContainer } from './styles'
+import {
+  Wrapper,
+  NameTitle,
+  Note,
+  NotesContainer,
+  NoteTitle,
+  NoteBody,
+  AddNoteButton,
+  AddNoteButtonIcon,
+  MobileAddNoteButton,
+  MobileAddNoteButtonIcon,
+  MobileAddNoteButtonText,
+  MobileNotesContainer,
+  MobileAddNoteButtonTextContainer
+} from './styles'
 import LoadingModal from 'components/LoadingModal'
 import plusSign from 'assets/plus-sign.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
@@ -23,25 +29,14 @@ const ListNotes = () => {
 
   const getUserFirstaname = async () => {
     setIsLoading(true)
-    const response = (await api.get("/users/me", {
-      headers: {
-        //@ts-ignore
-        authorization: localStorage.getItem("token")
-
-      },
-    }));
+    const response = (await api.get("/users/me"));
     setIsLoading(false)
     const { name } = response.data
     setUserName(name)
   }
   async function loadNotes() {
     try {
-      const response = await api.get("/notes", {
-        headers: {
-          //@ts-ignore
-          authorization: localStorage.getItem("token"),
-        },
-      });
+      const response = await api.get("/notes");
 
       const notes = response.data
 
@@ -88,6 +83,14 @@ const ListNotes = () => {
         <Wrapper>
           {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <NameTitle>Olá {userName.split(' ')[0]}</NameTitle>
+          <Link to={`/note/create`}>
+            <MobileAddNoteButton >
+              <MobileAddNoteButtonIcon src={plusSign} />
+              <MobileAddNoteButtonTextContainer>
+                <MobileAddNoteButtonText>Add New Note !</MobileAddNoteButtonText>
+              </MobileAddNoteButtonTextContainer>
+            </MobileAddNoteButton>
+          </Link>
           <MobileNotesContainer>
             {notes && notes.map(({ _id, title, body }) =>
               <Note key={_id}>
@@ -98,11 +101,6 @@ const ListNotes = () => {
                   {body}
                 </NoteBody>
               </Note>)}
-            <Link to={`/note/create`}>
-              <AddNoteButton mobile >
-                <AddNoteButtonIcon src={plusSign} mobile />
-              </AddNoteButton>
-            </Link>
           </MobileNotesContainer>
         </Wrapper>
       </PhoneBreakPoint>
