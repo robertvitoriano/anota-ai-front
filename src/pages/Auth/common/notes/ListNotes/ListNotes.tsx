@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
 import api from 'services/api'
 import {
   Wrapper,
@@ -28,11 +29,23 @@ const ListNotes = () => {
   const [notes, setNotes] = useState([])
 
   const getUserFirstaname = async () => {
-    setIsLoading(true)
-    const response = (await api.get("/users/me"));
-    setIsLoading(false)
-    const { name } = response.data
-    setUserName(name)
+    try{
+      setIsLoading(true)
+      const response = (await api.get("/users/me"));
+      setIsLoading(false)
+      const { name } = response.data
+      setUserName(name)
+      
+    }catch(error:any){
+      console.error(error)
+      setIsLoading(false)
+
+      Swal.fire(
+        'Um erro aconteceu',
+        String(error.message),
+        'error'
+      )
+    }
   }
   async function loadNotes() {
     try {
@@ -42,8 +55,15 @@ const ListNotes = () => {
 
       setNotes(notes)
 
-    } catch (error) {
+    } catch (error:any) {
       console.error(error)
+      setIsLoading(false)
+
+      Swal.fire(
+        'Um erro aconteceu',
+        String(error.message),
+        'error'
+      )
     }
   }
   useEffect(() => {
