@@ -33,7 +33,7 @@ const ListNotes = () => {
 
   const getUserFirstaname = async () => {
       setIsLoading(true)
-      const [error,response] = await to(api.get("/users/meeee"));
+      const [error,response] = await to(api.get("/users/me"));
 
       if(error){
         console.error(error)
