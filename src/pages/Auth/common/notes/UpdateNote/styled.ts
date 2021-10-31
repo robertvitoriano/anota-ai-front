@@ -96,4 +96,6 @@ height:8vh;
 border-radius:1.5rem;
 margin-bottom: 5px;
 padding-left: 1rem;
+outline: none;
+
 `
