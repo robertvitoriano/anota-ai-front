@@ -5,7 +5,8 @@ export const Wrapper = styled.div`
 background-color: #E5D8DA;
 padding: 1rem;
 width: fit-content;
-float: right;
+position:fixed;
+right:0;
 `;
 
 export const LogoutIcon = styled.img`

@@ -31,11 +31,32 @@ const ListNotes = () => {
 
   const history = useHistory()
 
-  const getUserFirstaname = async () => {
-      setIsLoading(true)
-      const [error,response] = await to(api.get("/users/me"));
+  useEffect(() => {
+    getUserFirstaname()
+    loadNotes()
+    return function cleanup() {
+      console.log('cleanup')
+    }
+  }, [])
 
-      if(error){
+  const getUserFirstaname = async () => {
+
+      try{
+
+        setIsLoading(true)
+      const response =  await api.get("/users/me",{
+          headers:{
+            authorization: localStorage.getItem('token') || ''
+          }
+        });
+
+        setIsLoading(false)
+        //@ts-ignore
+        const { name } = response?.data
+        setUserName(name)
+  
+
+      }catch(error:any){
         console.error(error)
         setIsLoading(false)
   
@@ -51,15 +72,16 @@ const ListNotes = () => {
 
       }
 
-      setIsLoading(false)
-      //@ts-ignore
-      const { name } = response?.data
-      setUserName(name)
+
       
   }
   async function loadNotes() {
     try {
-      const response = await api.get("/notes");
+      const response = await api.get("/notes",{
+        headers:{
+          authorization: localStorage.getItem('token') || ''
+        }
+      });
 
       const notes = response.data
 
@@ -76,13 +98,7 @@ const ListNotes = () => {
       )
     }
   }
-  useEffect(() => {
-    getUserFirstaname()
-    loadNotes()
-    return function cleanup() {
-      console.log('cleanup')
-    }
-  }, [])
+
 
 
   return (
