@@ -54,8 +54,7 @@ border-radius:15px;
 word-wrap: break-word;
 padding:0 10px;
 margin-bottom: ${({mobile}:NoteProps)=>(mobile?'.5rem':'none')};
-
-`
+width: 100%;`
 
 export const NoteTitle = styled.h2`
 text-align: center;
@@ -92,7 +91,7 @@ width: 200px;
 export const MobileNotesContainer = styled.div`
 height: 100%;
 overflow: auto;
-
+width: 80vw;
 `
 
 export const MobileAddNoteButton = styled.div`
