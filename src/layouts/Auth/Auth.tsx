@@ -9,7 +9,6 @@ import backgroundImage from 'assets/notes_list_background.jpg'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 
 import LogoutButton from 'components/LogoutButton';
-import BackButton from 'components/BackButton';
 
 const { Content } = AndDesignLayout;
 
@@ -39,8 +38,8 @@ export default function Layout({ children }: Props) {
           <AndDesignLayout className="site-layout">
             <Content>
               <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage}>
-                {children}
                 <LogoutButton />
+                {children}
               </ContentContainer>
             </Content>
           </AndDesignLayout>
@@ -50,9 +49,8 @@ export default function Layout({ children }: Props) {
         <AndDesignLayout className="site-layout">
           <Content>
             <MobileContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage} >
-            <BackButton/>
-              {children}
             <LogoutButton />
+              {children}
             </MobileContentContainer>
           </Content>
         </AndDesignLayout>
