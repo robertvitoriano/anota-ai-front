@@ -17,6 +17,7 @@ import {
   MobileNoteBody,
   MobileNoteTitleInput
 } from './styled'
+import to from 'await-to-js';
 export default function UpdateNotes() {
 
 
@@ -57,7 +58,24 @@ export default function UpdateNotes() {
       setIsLoading(true)
 
       //@ts-ignore
-      await api.post('/notes', { title: noteTitle, body: noteBody });
+      const [error,] = await to(api.post('/notes', { title: noteTitle, body: noteBody }));
+
+      if(error){
+        console.error(error)
+        setIsLoading(false)
+  
+       return Swal.fire(
+          'Um erro aconteceu',
+          String(error.message),
+          'error'
+        ).then(() => {
+          localStorage.removeItem('token')
+          //@ts-ignore
+          window.location.href = '/'
+        })
+
+      }
+
       setIsLoading(false)
       Swal.fire({
         title: "Anotação criada com sucesso !",
