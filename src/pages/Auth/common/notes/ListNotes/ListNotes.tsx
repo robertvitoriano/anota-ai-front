@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link,useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import api from 'services/api'
+import to from 'await-to-js'
 import {
   Wrapper,
   NameTitle,
@@ -28,24 +29,33 @@ const ListNotes = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [notes, setNotes] = useState([])
 
+  const history = useHistory()
+
   const getUserFirstaname = async () => {
-    try{
       setIsLoading(true)
-      const response = (await api.get("/users/me"));
+      const [error,response] = await to(api.get("/users/meeee"));
+
+      if(error){
+        console.error(error)
+        setIsLoading(false)
+  
+       return Swal.fire(
+          'Um erro aconteceu',
+          String(error.message),
+          'error'
+        ).then(() => {
+          localStorage.removeItem('token')
+          //@ts-ignore
+          window.location.href = '/'
+        })
+
+      }
+
       setIsLoading(false)
-      const { name } = response.data
+      //@ts-ignore
+      const { name } = response?.data
       setUserName(name)
       
-    }catch(error:any){
-      console.error(error)
-      setIsLoading(false)
-
-      Swal.fire(
-        'Um erro aconteceu',
-        String(error.message),
-        'error'
-      )
-    }
   }
   async function loadNotes() {
     try {
