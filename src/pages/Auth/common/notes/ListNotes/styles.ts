@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-interface AddNoteButtonProps {
+type MobileProp = {
   mobile?: boolean
 }
+
+interface NoteProps extends MobileProp {}
 
 
 export const Wrapper = styled.div`
@@ -51,6 +53,7 @@ border:5px solid #242324;
 border-radius:15px;
 word-wrap: break-word;
 padding:0 10px;
+margin-bottom: ${({mobile}:NoteProps)=>(mobile?'.5rem':'none')};
 
 `
 

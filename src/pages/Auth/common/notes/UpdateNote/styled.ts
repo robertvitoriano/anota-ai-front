@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+type mobile =  {
+    mobile: boolean;
+}
+
+interface MobileNoteTitleInputProps extends mobile {
+    
+}
 export const Wrapper = styled.div`
 display: flex;
 align-items: center;
@@ -60,6 +67,33 @@ padding: 1rem;
 font-weight: bolder;
 font-family: 'Calligraffitti', cursive;
 font-size: 1.5rem;
+text-align: center;
 
+`
 
+// MOBILE
+
+export const MobileNoteContainer = styled.div`
+
+`
+export const MobileNoteBody = styled.div`
+
+display: flex;
+align-items: center;
+flex-direction: column;
+height:50vh;
+width:80vw;
+background-color: white;
+border-radius:1.5rem;
+border:.5rem solid #370502;
+margin-bottom: 1rem;
+
+`
+export const MobileNoteTitleInput = styled.input`
+border:solid .5rem  #370502;
+width:80vw;
+height:8vh;
+border-radius:1.5rem;
+margin-bottom: 5px;
+padding-left: 1rem;
 `

@@ -93,7 +93,7 @@ const ListNotes = () => {
           </Link>
           <MobileNotesContainer>
             {notes && notes.map(({ _id, title, body }) =>
-              <Note key={_id}>
+              <Note key={_id} mobile>
                 <Link to={{ pathname: `/note/${_id}`, state: { title, body } }}  >
                   <NoteTitle>{title}</NoteTitle>
                 </Link>
