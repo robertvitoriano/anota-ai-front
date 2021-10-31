@@ -58,9 +58,16 @@ export default function UpdateNotes() {
       setIsLoading(true)
 
       //@ts-ignore
-      const [error,] = await to(api.post('/notes', { title: noteTitle, body: noteBody }));
-
-      if(error){
+      
+      try{
+        await api.post('/notes', { title: noteTitle, body: noteBody },
+        {
+          headers:{
+            authorization: localStorage.getItem('token') || ''
+          }
+        });
+        
+      }catch(error:any){
         console.error(error)
         setIsLoading(false)
   

@@ -71,9 +71,6 @@ const ListNotes = () => {
         })
 
       }
-
-
-      
   }
   async function loadNotes() {
     try {
