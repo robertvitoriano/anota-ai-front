@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 display: flex;
 align-items: center;
 flex-direction: column;
-width: 100%;
+width: 100vw;
 height: 100vh;
 `
 export const NameTitle = styled.h1`
