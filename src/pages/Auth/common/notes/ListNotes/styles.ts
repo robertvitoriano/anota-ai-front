@@ -4,13 +4,14 @@ type MobileProp = {
 }
 
 interface NoteProps extends MobileProp {}
+interface WrapperProps extends MobileProp {}
 
 
 export const Wrapper = styled.div`
 display: flex;
 align-items: center;
 flex-direction: column;
-width: 100%;
+width: ${({mobile}:WrapperProps)=>(mobile?'100vw':'100%')};
 height: 100vh;
 `
 export const NameTitle = styled.h1`

@@ -36,69 +36,83 @@ export default function UpdateNotes() {
   const { id } = useParams();
 
   const fetchNote = async () => {
-    if (id !== 'create') {
-      setIsLoading(true)
+    try {
 
-      //@ts-ignore
-      const response = await api.get(`/notes/${id}`);
+      if (id !== 'create') {
+        setIsLoading(true)
+
+        //@ts-ignore
+        const response = await api.get(`/notes/${id}`,
+          {
+            headers: {
+              authorization: localStorage.getItem('token') || ''
+            }
+          });
 
 
-      const { title, body } = response.data;
+        const { title, body } = response.data;
 
-      setNoteTitle(title);
-      setNoteBody(body);
+        setNoteTitle(title);
+        setNoteBody(body);
 
+        setIsLoading(false)
+      }
+
+    } catch (error: any) {
+      console.error(error)
       setIsLoading(false)
+
+      return Swal.fire(
+        'Um erro aconteceu',
+        String(error.message),
+        'error'
+      ).then(() => {
+        localStorage.removeItem('token')
+        //@ts-ignore
+        window.location.href = '/'
+      })
+
     }
   }
 
   const createNote = async () => {
 
+    //@ts-ignore
+
     try {
       setIsLoading(true)
-
-      //@ts-ignore
-      
-      try{
-        await api.post('/notes', { title: noteTitle, body: noteBody },
+      await api.post('/notes', { title: noteTitle, body: noteBody },
         {
-          headers:{
+          headers: {
             authorization: localStorage.getItem('token') || ''
           }
         });
-        
-      }catch(error:any){
-        console.error(error)
-        setIsLoading(false)
-  
-       return Swal.fire(
-          'Um erro aconteceu',
-          String(error.message),
-          'error'
-        ).then(() => {
-          localStorage.removeItem('token')
-          //@ts-ignore
-          window.location.href = '/'
-        })
 
-      }
-
-      setIsLoading(false)
-      Swal.fire({
-        title: "Anotação criada com sucesso !",
-        text: `Você criou uma anotação !`,
-        icon: "success",
-        confirmButtonText: 'Ok !'
-      }).then(() => history.push('/notes'))
-
-    } catch (error) {
+    } catch (error: any) {
       console.error(error)
-      Swal.fire(
-        'Cancelled',
-        String(error),
+      setIsLoading(false)
+
+      return Swal.fire(
+        'Um erro aconteceu',
+        String(error.message),
         'error'
-      )
+      ).then(() => {
+        localStorage.removeItem('token')
+        //@ts-ignore
+        window.location.href = '/'
+      })
+
     }
+
+    setIsLoading(false)
+    Swal.fire({
+      title: "Anotação criada com sucesso !",
+      text: `Você criou uma anotação !`,
+      icon: "success",
+      confirmButtonText: 'Ok !'
+    }).then(() => history.push('/notes'))
+
+
   }
 
   return (
