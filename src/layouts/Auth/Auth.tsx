@@ -8,6 +8,8 @@ import { ContentContainer, Sider, MobileContentContainer } from './styles'
 import backgroundImage from 'assets/notes_list_background.jpg'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 
+import LogoutButton from 'components/LogoutButton';
+
 const { Content } = AndDesignLayout;
 
 type Props = {
@@ -36,6 +38,7 @@ export default function Layout({ children }: Props) {
           <AndDesignLayout className="site-layout">
             <Content>
               <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage}>
+                <LogoutButton />
                 {children}
               </ContentContainer>
             </Content>
@@ -46,6 +49,7 @@ export default function Layout({ children }: Props) {
         <AndDesignLayout className="site-layout">
           <Content>
             <MobileContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage} >
+            <LogoutButton />
               {children}
             </MobileContentContainer>
           </Content>
