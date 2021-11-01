@@ -7,6 +7,11 @@ width: fit-content;
 position:fixed;
 top:0;
 left:0;
+
+&:hover{
+  cursor:pointer;
+}
+
 `;
 
 export const BackButtonIcon = styled.img`
