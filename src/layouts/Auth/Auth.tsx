@@ -49,8 +49,8 @@ export default function Layout({ children }: Props) {
         <AndDesignLayout className="site-layout">
           <Content>
             <MobileContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage} >
-            <LogoutButton />
               {children}
+            <LogoutButton />
             </MobileContentContainer>
           </Content>
         </AndDesignLayout>

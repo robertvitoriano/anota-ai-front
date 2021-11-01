@@ -133,7 +133,7 @@ export default function UpdateNotes() {
       <PhoneBreakPoint>
         <Wrapper>
           {isLoading ? <LoadingModal show={isLoading} /> : ""}
-          <PageTitle>Let's Write a Note !</PageTitle>
+          <PageTitle mobile >Let's Write a Note !</PageTitle>
           <MobileNoteContainer>
             <MobileNoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <MobileNoteBody>
