@@ -8,6 +8,11 @@ width: fit-content;
 position:fixed;
 top:0;
 right:0;
+
+&:hover {
+  cursor: pointer;
+}
+
 `;
 
 export const LogoutIcon = styled.img`
