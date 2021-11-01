@@ -4,9 +4,7 @@ type mobile =  {
     mobile: boolean;
 }
 
-interface MobileNoteTitleInputProps extends mobile {
-    
-}
+
 export const Wrapper = styled.div`
 display: flex;
 align-items: center;
@@ -97,5 +95,4 @@ border-radius:1.5rem;
 margin-bottom: 5px;
 padding-left: 1rem;
 outline: none;
-
 `
