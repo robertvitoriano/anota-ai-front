@@ -6,6 +6,7 @@ background-color: #E5D8DA;
 padding: 1rem;
 width: fit-content;
 position:fixed;
+top:0;
 right:0;
 `;
 
