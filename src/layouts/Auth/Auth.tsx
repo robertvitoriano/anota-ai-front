@@ -25,10 +25,16 @@ export default function Layout({ children }: Props) {
     <>
       <DesktopBreakPoint>
         <AndDesignLayout style={{ minHeight: '100%' }}>
-    
+          <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: 'white' }}>
+            <Menu mode="inline" style={{ marginTop: '25px' }}>
+              <Menu.Item key="1" icon={<PieChartOutlined />}>
+                Option 1
+              </Menu.Item>
+            </Menu>
+          </Sider>
           <AndDesignLayout className="site-layout">
             <Content>
-              <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage}>
+              <ContentContainer className="site-layout-background" style={{ minHeight: 360}} backgroundImage={backgroundImage}>
                 <BackButton />
                 {children}
                 <LogoutButton />

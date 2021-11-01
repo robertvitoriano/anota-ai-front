@@ -14,6 +14,7 @@ background-image: url('${(props) => props.backgroundImage}') ;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
+position: relative;
 `
 export const MobileContentContainer =styled(ContentContainer)`
 background-position: left top ;
