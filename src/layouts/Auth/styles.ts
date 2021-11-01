@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Layout } from 'antd';
+import { Layout, Menu } from 'antd';
 
 interface Props {
   backgroundImage:any
@@ -21,5 +21,9 @@ background-position: left top ;
 `
 
 export const Sider = styled(Layout.Sider)`
+
+`
+export const MenuItem = styled(Menu.Item)`
+display: flex;
 
 `
