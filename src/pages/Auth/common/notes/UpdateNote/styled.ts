@@ -35,7 +35,7 @@ font-size: ${({mobile}:PageTitleProps)=>(mobile?'2rem':'2.5rem')};
 `
 
 export const NoteTitleInput = styled.input`
-border:solid 1rem  #370502;
+border:solid .7rem  #370502;
 width:30vw;
 height:8vh;
 border-radius:1.5rem;
