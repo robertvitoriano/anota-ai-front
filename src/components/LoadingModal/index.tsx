@@ -1,16 +1,14 @@
 import React from "react";
 import { Translucent, Circle, Wrapper, Modal } from "./styled";
 import './animations.css'
+import { useSelector } from "react-redux";
 
-interface IProps {
-  show:boolean
-
-}
-
-const Loading = ({show, ...rest}:IProps) => {
+const Loading = () => {
+  //@ts-ignore
+  const isLoading  = useSelector(state => state.loading.isLoading);
 
   return (
-    <Wrapper style={{display:show?'flex':'none'}}  {...rest}>
+    <Wrapper style={{display:isLoading?'flex':'none'}}>
       <Translucent />
         <Modal className={`grow`}>
           <Circle className="rotate" />

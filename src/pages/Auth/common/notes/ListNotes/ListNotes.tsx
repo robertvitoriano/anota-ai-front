@@ -18,18 +18,19 @@ import {
   MobileNotesContainer,
   MobileAddNoteButtonTextContainer
 } from './styles'
-import LoadingModal from 'components/LoadingModal'
 import plusSign from 'assets/plus-sign.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
+import { useDispatch } from 'react-redux'
+import { setIsLoading } from 'store/modules/loading/reducer'
 
 
 const ListNotes = () => {
 
   const [userName, setUserName] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
   const [notes, setNotes] = useState([])
 
   const history = useHistory()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     getUserFirstaname()
@@ -40,25 +41,26 @@ const ListNotes = () => {
   }, [])
 
   const getUserFirstaname = async () => {
+    dispatch(setIsLoading(true))
 
       try{
-
-        setIsLoading(true)
       const response =  await api.get("/users/me",{
           headers:{
             authorization: localStorage.getItem('token') || ''
           }
         });
 
-        setIsLoading(false)
         //@ts-ignore
         const { name } = response?.data
         setUserName(name)
-  
+
+        dispatch(setIsLoading(false))
+
 
       }catch(error:any){
+        dispatch(setIsLoading(false));
+
         console.error(error)
-        setIsLoading(false)
   
        return Swal.fire(
           'Um erro aconteceu',
@@ -74,6 +76,8 @@ const ListNotes = () => {
   }
   async function loadNotes() {
     try {
+      dispatch(setIsLoading(true))
+
       const response = await api.get("/notes",{
         headers:{
           authorization: localStorage.getItem('token') || ''
@@ -84,9 +88,11 @@ const ListNotes = () => {
 
       setNotes(notes)
 
+      dispatch(setIsLoading(false))
+
+
     } catch (error:any) {
       console.error(error)
-      setIsLoading(false)
 
       Swal.fire(
         'Um erro aconteceu',
@@ -100,7 +106,6 @@ const ListNotes = () => {
     <>
       <DesktopBreakPoint>
         <Wrapper>
-          {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
           <NotesContainer>
             {notes && notes.map(({ _id, title, body }) =>
@@ -122,7 +127,6 @@ const ListNotes = () => {
       </DesktopBreakPoint>
       <PhoneBreakPoint>
         <Wrapper>
-          {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <NameTitle>Olá {userName.split(' ')[0]}</NameTitle>
           <Link to={`/note/create`}>
             <MobileAddNoteButton >

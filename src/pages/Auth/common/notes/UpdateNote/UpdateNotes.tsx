@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router';
 import api from 'services/api';
-import LoadingModal from 'components/LoadingModal'
 import Swal from 'sweetalert2'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
+import { useDispatch } from 'react-redux';
+import { setIsLoading } from 'store/modules/loading/reducer'
 
 import {
   Wrapper,
@@ -23,9 +24,9 @@ export default function UpdateNotes() {
 
   const [noteTitle, setNoteTitle] = useState<string>();
   const [noteBody, setNoteBody] = useState<string>();
-  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -39,8 +40,7 @@ export default function UpdateNotes() {
     try {
 
       if (id !== 'create') {
-        setIsLoading(true)
-
+        dispatch(setIsLoading(true));
         //@ts-ignore
         const response = await api.get(`/notes/${id}`,
           {
@@ -54,13 +54,14 @@ export default function UpdateNotes() {
 
         setNoteTitle(title);
         setNoteBody(body);
+        dispatch(setIsLoading(false));
 
-        setIsLoading(false)
       }
 
     } catch (error: any) {
+      dispatch(setIsLoading(false));
+
       console.error(error)
-      setIsLoading(false)
 
       return Swal.fire(
         'Um erro aconteceu',
@@ -80,7 +81,6 @@ export default function UpdateNotes() {
     //@ts-ignore
 
     try {
-      setIsLoading(true)
       await api.post('/notes', { title: noteTitle, body: noteBody },
         {
           headers: {
@@ -90,7 +90,6 @@ export default function UpdateNotes() {
 
     } catch (error: any) {
       console.error(error)
-      setIsLoading(false)
 
       return Swal.fire(
         'Um erro aconteceu',
@@ -104,7 +103,6 @@ export default function UpdateNotes() {
 
     }
 
-    setIsLoading(false)
     Swal.fire({
       title: "Anotação criada com sucesso !",
       text: `Você criou uma anotação !`,
@@ -119,7 +117,6 @@ export default function UpdateNotes() {
     <>
       <DesktopBreakPoint>
         <Wrapper>
-          {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <PageTitle>Let's Write a Note !</PageTitle>
           <NoteContainer>
             <NoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
@@ -132,7 +129,6 @@ export default function UpdateNotes() {
       </DesktopBreakPoint>
       <PhoneBreakPoint>
         <Wrapper>
-          {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <PageTitle mobile>Let's Write a Note !</PageTitle>
           <MobileNoteContainer>
             <MobileNoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />

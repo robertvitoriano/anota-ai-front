@@ -6,9 +6,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import store from './store'
+import LoadingModal from './components/LoadingModal'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+    <LoadingModal/>
     <App />
     </Provider>
   </React.StrictMode>,
