@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Layout as AndDesignLayout, Menu } from 'antd';
-import { PieChartOutlined } from '@ant-design/icons';
-import { ContentContainer, Sider, MobileContentContainer } from './styles';
+import { PieChartOutlined, HomeFilled } from '@ant-design/icons';
+import { ContentContainer, Sider, MobileContentContainer, MenuItem, MenuItemContent } from './styles';
 import backgroundImage from 'assets/notes_list_background.jpg'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 import LogoutButton from 'components/LogoutButton';
 import BackButton from 'components/BackButton'
+import Sidebar from 'components/Sidebar';
 
 const { Content } = AndDesignLayout;
 
@@ -24,8 +25,8 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <DesktopBreakPoint>
-        <AndDesignLayout style={{ minHeight: '100%' }}>
-    
+        <AndDesignLayout style={{ minHeight: '100%' }}> 
+        <Sidebar/>
           <AndDesignLayout className="site-layout">
             <Content>
               <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage}>
