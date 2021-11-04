@@ -22,25 +22,25 @@ import {
 import { Form } from 'antd'
 import backgroundImage from 'assets/login_background.jpg'
 import mobileBackgroundImage from 'assets/mobile_login_background.png'
-import LoadingModal from 'components/LoadingModal'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
+import { useDispatch } from 'react-redux'
+import {setIsLoading} from 'store/modules/loading/reducer'
 
 import api from 'services/api'
 const SignIn = () => {
-  const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory()
+  const dispatch = useDispatch()
 
 
   const onFinish = async (values: any) => {
     try {
-      setIsLoading(true);
+      dispatch(setIsLoading(true))
       await api.post('/users', values);
-      setIsLoading(false);
       //@ts-ignore
       const email = document.getElementsByName('email')[0].value;
       const emailClient = email.split('@')[1].split('.')[0]
-
+      dispatch(setIsLoading(false))
       Swal.fire({
         title: "Cadastro iniciado",
         text: `Em breve um e-mail será enviado para ${email}, confirme seu e-mail, finalize o cadastro e comece a criar !`,
@@ -52,6 +52,7 @@ const SignIn = () => {
       )).then(() => history.push('/'))
 
     } catch (error) {
+      dispatch(setIsLoading(false))
       console.error(error)
       Swal.fire(
         'Cancelled',
@@ -70,7 +71,6 @@ const SignIn = () => {
       <DesktopBreakPoint>
 
         <Wrapper backgroundImage={backgroundImage}>
-          {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <Content>
             <PresentationSection>
               {/* <Title level={1}>Let's write Some Notes</Title> */}
@@ -121,7 +121,6 @@ const SignIn = () => {
       </DesktopBreakPoint>
       <PhoneBreakPoint>
         <MobileWrapper backgroundImage={mobileBackgroundImage}>
-          {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <FormSection>
               <FormContainer>
                 <LoginMessage >Register yourself !</LoginMessage>

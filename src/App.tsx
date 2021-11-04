@@ -5,12 +5,10 @@ import {
 } from "react-router-dom";
 import LoginPage from 'pages/Unauth/SignIn'
 import ListNotes from 'pages/Auth/common/notes/ListNotes'
-
 import { commonRoutes } from './routes';
 import { unauthRoutes } from './routes'
 import { AuthLayout } from "layouts";
 import { useSelector } from 'react-redux'
-
 export default function App() {
   //@ts-ignore
   const token = useSelector((state) => state.auth.token)
@@ -18,6 +16,7 @@ export default function App() {
 
 
   return (
+    <>
     <Router>
       {!token ?
         <Switch>
@@ -38,5 +37,6 @@ export default function App() {
           </Switch>
         </AuthLayout>}
     </Router>
+    </>
   );
 }

@@ -24,12 +24,11 @@ import backgroundImage from 'assets/login_background.jpg'
 import mobileBackgroundImage from 'assets/mobile_login_background.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 import api from 'services/api'
-import LoadingModal from 'components/LoadingModal'
+import { setIsLoading } from 'store/modules/loading/reducer'
 
 
 const SignIn = () => {
 
-  const [isLoading, setIsLoading] = useState<boolean>()
 
   const history = useHistory()
 
@@ -37,9 +36,7 @@ const SignIn = () => {
 
   const onFinish = async (values: any) => {
     try {
-
-      setIsLoading(true)
-
+      dispatch(setIsLoading(true));
       const response = await api.post('/users/login', values);
 
       const { token, user } = response.data;
@@ -47,13 +44,15 @@ const SignIn = () => {
       localStorage.setItem("token", 'Bearer ' + token);
       localStorage.setItem("userId", user._id);
       dispatch(setToken(token));
-      setIsLoading(false)
+      dispatch(setIsLoading(false));
 
       history.push('/notes')
 
     } catch (error: any) {
+      
+      dispatch(setIsLoading(false))
+
       console.error(error)
-      setIsLoading(false)
 
       Swal.fire(
         'Um erro aconteceu',
@@ -72,8 +71,6 @@ const SignIn = () => {
   return <>
     <DesktopBreakPoint>
       <Wrapper backgroundImage={backgroundImage}>
-        {isLoading ? <LoadingModal show={isLoading} /> : ""}
-
         <Content>
           <PresentationSection>
             {/* <Title level={1}>Let's write Some Notes</Title> */}
@@ -123,7 +120,6 @@ const SignIn = () => {
     </DesktopBreakPoint>
     <PhoneBreakPoint>
       <MobileWrapper backgroundImage={mobileBackgroundImage}>
-        {isLoading ? <LoadingModal show={isLoading} /> : ""}
           <FormSection mobile>
             <FormContainer>
               <LoginMessage >Let's write Some Notes</LoginMessage>
