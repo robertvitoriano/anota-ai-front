@@ -55,7 +55,7 @@ border-radius:1.5rem;
 
 `
 
-export const CreateNoteButton = styled.div`
+export const Button = styled.div`
 &:hover{
     cursor: pointer;
 }
