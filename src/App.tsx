@@ -11,10 +11,11 @@ import { unauthRoutes } from './routes'
 import { AuthLayout } from "layouts";
 import { useSelector } from 'react-redux'
 
-
 export default function App() {
   //@ts-ignore
   const token = useSelector((state) => state.auth.token)
+    //@ts-ignore
+
 
   return (
     <Router>
