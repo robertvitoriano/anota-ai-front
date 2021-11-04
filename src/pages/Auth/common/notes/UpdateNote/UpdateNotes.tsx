@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router';
+import { useParams, useHistory, useLocation } from 'react-router';
 import api from 'services/api';
 import Swal from 'sweetalert2'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
@@ -35,11 +35,13 @@ export default function UpdateNotes() {
 
   // @ts-ignore
   const { id } = useParams();
+  const location = useLocation();
+
 
   const fetchNote = async () => {
     try {
 
-      if (id !== 'create') {
+      if (!location.pathname.includes('create')) {
         dispatch(setIsLoading(true));
         //@ts-ignore
         const response = await api.get(`/notes/${id}`,
@@ -124,7 +126,8 @@ export default function UpdateNotes() {
               <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
             </NoteBody>
           </NoteContainer>
-          <CreateNoteButton onClick={() => createNote()}>Create Note</CreateNoteButton>
+          <CreateNoteButton onClick={() => createNote()}>{!location.pathname.includes('create')?'Create Note':'Update Note'}</CreateNoteButton>
+          {location.pathname.includes('create')?'':<CreateNoteButton onClick={() => createNote()}>Delete Note</CreateNoteButton>}
         </Wrapper>
       </DesktopBreakPoint>
       <PhoneBreakPoint>
@@ -135,7 +138,8 @@ export default function UpdateNotes() {
             <MobileNoteBody>
               <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
             </MobileNoteBody>
-            <CreateNoteButton onClick={() => createNote()}>Create Note</CreateNoteButton>
+            <CreateNoteButton onClick={() => createNote()}>{location.pathname.includes('create')?'Create Note':'Update Note'}</CreateNoteButton>
+          {location.pathname.includes('create')?'':<CreateNoteButton onClick={() => createNote()}>Delete Note</CreateNoteButton>}
           </MobileNoteContainer>
         </Wrapper>
       </PhoneBreakPoint>
