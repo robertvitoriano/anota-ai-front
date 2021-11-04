@@ -13,7 +13,7 @@ import {
   NoteTitleInput,
   NoteBody,
   NoteBodyTextArea,
-  CreateNoteButton,
+  Button,
   MobileNoteContainer,
   MobileNoteBody,
   MobileNoteTitleInput
@@ -80,17 +80,28 @@ export default function UpdateNotes() {
 
   const createNote = async () => {
 
-    //@ts-ignore
-
-    try {
+    Swal.fire({
+      title: 'Do you really want to create this note ? ', 
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',  // blue     
+    }).then(async(result) => {
       await api.post('/notes', { title: noteTitle, body: noteBody },
-        {
-          headers: {
-            authorization: localStorage.getItem('token') || ''
-          }
-        });
+      {
+        headers: {
+          authorization: localStorage.getItem('token') || ''
+        }
+      });
+      if (result.value) {
+        Swal.fire({
+          title: "Note Successufully created!",
+          text: `You Created a Note !`,
+          icon: "success",
+          confirmButtonText: 'Ok !'
+        }).then(() => history.push('/notes'))
+      }
+    }).catch((error)=>{
 
-    } catch (error: any) {
       console.error(error)
 
       return Swal.fire(
@@ -103,16 +114,47 @@ export default function UpdateNotes() {
         window.location.href = '/'
       })
 
-    }
+    })
+  }
+
+  const deleteNote = async (id:string) => {
 
     Swal.fire({
-      title: "Anotação criada com sucesso !",
-      text: `Você criou uma anotação !`,
-      icon: "success",
-      confirmButtonText: 'Ok !'
-    }).then(() => history.push('/notes'))
+      title: 'Do You Really Want To Delete This Note ? ', 
+      text: `You Won't be Able To Undo This !`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',  
+    }).then(async(result) => {
+      await api.delete('/notes/'+id,
+      {
+        headers: {
+          authorization: localStorage.getItem('token') || ''
+        },
+      });
+      if (result.value) {
+        Swal.fire({
+          title: "Note Successufully Deleted!",
+          text: `You Deleted a Note !`,
+          icon: "success",
+          confirmButtonText: 'Ok !'
+        }).then(() => history.push('/notes'))
+      }
+    }).catch((error)=>{
 
+      console.error(error)
 
+      return Swal.fire(
+        'Um erro aconteceu',
+        String(error.message),
+        'error'
+      ).then(() => {
+        localStorage.removeItem('token')
+        //@ts-ignore
+        window.location.href = '/'
+      })
+
+    })
   }
 
   return (
@@ -126,8 +168,8 @@ export default function UpdateNotes() {
               <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
             </NoteBody>
           </NoteContainer>
-          <CreateNoteButton onClick={() => createNote()}>{!location.pathname.includes('create')?'Create Note':'Update Note'}</CreateNoteButton>
-          {location.pathname.includes('create')?'':<CreateNoteButton onClick={() => createNote()}>Delete Note</CreateNoteButton>}
+          <Button onClick={() => createNote()}>{location.pathname.includes('create')?'Create Note':'Update Note'}</Button>
+          {location.pathname.includes('create')?'':<Button onClick={() => deleteNote(id)}>Delete Note</Button>}
         </Wrapper>
       </DesktopBreakPoint>
       <PhoneBreakPoint>
@@ -138,8 +180,8 @@ export default function UpdateNotes() {
             <MobileNoteBody>
               <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
             </MobileNoteBody>
-            <CreateNoteButton onClick={() => createNote()}>{location.pathname.includes('create')?'Create Note':'Update Note'}</CreateNoteButton>
-          {location.pathname.includes('create')?'':<CreateNoteButton onClick={() => createNote()}>Delete Note</CreateNoteButton>}
+            <Button onClick={() => createNote()}>{location.pathname.includes('create')?'Create Note':'Update Note'}</Button>
+          {location.pathname.includes('create')?'':<Button onClick={() => deleteNote(id)}>Delete Note</Button>}
           </MobileNoteContainer>
         </Wrapper>
       </PhoneBreakPoint>
