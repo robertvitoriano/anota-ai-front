@@ -18,12 +18,13 @@ import {
   MobileNoteBody,
   MobileNoteTitleInput
 } from './styled'
-import to from 'await-to-js';
 export default function UpdateNotes() {
 
+  const location = useLocation();
 
   const [noteTitle, setNoteTitle] = useState<string>();
   const [noteBody, setNoteBody] = useState<string>();
+  const [isCreating, setIsCreating] = useState<boolean>(location.pathname.includes('create') );
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -35,13 +36,11 @@ export default function UpdateNotes() {
 
   // @ts-ignore
   const { id } = useParams();
-  const location = useLocation();
-
 
   const fetchNote = async () => {
     try {
 
-      if (!location.pathname.includes('create')) {
+      if (!isCreating) {
         dispatch(setIsLoading(true));
         //@ts-ignore
         const response = await api.get(`/notes/${id}`,
@@ -50,7 +49,6 @@ export default function UpdateNotes() {
               authorization: localStorage.getItem('token') || ''
             }
           });
-
 
         const { title, body } = response.data;
 
@@ -61,46 +59,46 @@ export default function UpdateNotes() {
       }
 
     } catch (error: any) {
-      dispatch(setIsLoading(false));
-
-      console.error(error)
-
-      return Swal.fire(
-        'Um erro aconteceu',
-        String(error.message),
-        'error'
-      ).then(() => {
+       console.error(error);
         localStorage.removeItem('token')
         //@ts-ignore
         window.location.href = '/'
-      })
 
     }
   }
 
-  const createNote = async () => {
+  const createNote = async (mode:string) => {
 
     Swal.fire({
-      title: 'Do you really want to create this note ? ', 
+      title: `Do you really want to ${mode} this note ? `,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',  // blue     
-    }).then(async(result) => {
+    }).then(async (result) => {
+      if(mode==='create'){
       await api.post('/notes', { title: noteTitle, body: noteBody },
-      {
-        headers: {
-          authorization: localStorage.getItem('token') || ''
-        }
-      });
+        {
+          headers: {
+            authorization: localStorage.getItem('token') || ''
+          }
+        });
+      }else{
+        await api.post('/notes/' + id, { title: noteTitle, body: noteBody },
+        {
+          headers: {
+            authorization: localStorage.getItem('token') || ''
+          }
+        });
+      }
       if (result.value) {
         Swal.fire({
-          title: "Note Successufully created!",
-          text: `You Created a Note !`,
+          title: `Note Successufully ${mode}d`!,
+          text: `You ${mode==='create'?'Created':'Updated'} a Note !`,
           icon: "success",
           confirmButtonText: 'Ok !'
         }).then(() => history.push('/notes'))
       }
-    }).catch((error)=>{
+    }).catch((error) => {
 
       console.error(error)
 
@@ -117,21 +115,21 @@ export default function UpdateNotes() {
     })
   }
 
-  const deleteNote = async (id:string) => {
+  const deleteNote = async (id: string) => {
 
     Swal.fire({
-      title: 'Do You Really Want To Delete This Note ? ', 
+      title: 'Do You Really Want To Delete This Note ? ',
       text: `You Won't be Able To Undo This !`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',  
-    }).then(async(result) => {
-      await api.delete('/notes/'+id,
-      {
-        headers: {
-          authorization: localStorage.getItem('token') || ''
-        },
-      });
+      confirmButtonColor: '#3085d6',
+    }).then(async (result) => {
+      await api.delete('/notes/' + id,
+        {
+          headers: {
+            authorization: localStorage.getItem('token') || ''
+          },
+        });
       if (result.value) {
         Swal.fire({
           title: "Note Successufully Deleted!",
@@ -140,7 +138,7 @@ export default function UpdateNotes() {
           confirmButtonText: 'Ok !'
         }).then(() => history.push('/notes'))
       }
-    }).catch((error)=>{
+    }).catch((error) => {
 
       console.error(error)
 
@@ -168,8 +166,11 @@ export default function UpdateNotes() {
               <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
             </NoteBody>
           </NoteContainer>
-          <Button onClick={() => createNote()}>{location.pathname.includes('create')?'Create Note':'Update Note'}</Button>
-          {location.pathname.includes('create')?'':<Button onClick={() => deleteNote(id)}>Delete Note</Button>}
+          <Button
+            onClick={() => createNote(isCreating ? 'create' : 'update')}
+          >{isCreating ? 'Create Note' : 'Update Note'}
+          </Button>
+          {isCreating ? '' : <Button onClick={() => deleteNote(id)}>Delete Note</Button>}
         </Wrapper>
       </DesktopBreakPoint>
       <PhoneBreakPoint>
@@ -180,8 +181,8 @@ export default function UpdateNotes() {
             <MobileNoteBody>
               <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
             </MobileNoteBody>
-            <Button onClick={() => createNote()}>{location.pathname.includes('create')?'Create Note':'Update Note'}</Button>
-          {location.pathname.includes('create')?'':<Button onClick={() => deleteNote(id)}>Delete Note</Button>}
+            <Button onClick={() => createNote(isCreating ? 'create' : 'update')}>{location.pathname.includes('create') ? 'Create Note' : 'Update Note'}</Button>
+            {isCreating ? '' : <Button onClick={() => deleteNote(id)}>Delete Note</Button>}
           </MobileNoteContainer>
         </Wrapper>
       </PhoneBreakPoint>
