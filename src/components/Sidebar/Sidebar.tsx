@@ -4,7 +4,7 @@ import { HomeFilled } from '@ant-design/icons';
 import {  Menu } from 'antd';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCollapsed } from 'store/modules/sidebar/reducer';
-
+import DynamicIcon from 'components/DynamicIcon';
 export default function SideBar() {
   //@ts-ignore
   const collapsed = useSelector((state) => state.sidebar.collapsed)
@@ -19,7 +19,7 @@ export default function SideBar() {
     <Menu mode="inline" style={{ marginTop: '25px' }}>
       <MenuItem key="1">
         <MenuItemContent>
-          <HomeFilled />
+        <DynamicIcon type={'HomeFilled'} />
           {!collapsed ? 'Home' : ''}
         </MenuItemContent>
       </MenuItem>
