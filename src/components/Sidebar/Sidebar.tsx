@@ -1,6 +1,5 @@
 
 import {  Sider,  MenuItem, MenuItemContent } from './styles';
-import { HomeFilled } from '@ant-design/icons';
 import {  Menu } from 'antd';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCollapsed } from 'store/modules/sidebar/reducer';
