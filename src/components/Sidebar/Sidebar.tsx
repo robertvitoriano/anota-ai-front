@@ -1,10 +1,10 @@
 
-import {  Sider,  MenuItem, MenuItemContent } from './styles';
-import { HomeFilled } from '@ant-design/icons';
-import {  Menu } from 'antd';
+import { Sider, MenuItem, MenuItemContent } from './styles';
+import { Menu } from 'antd';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCollapsed } from 'store/modules/sidebar/reducer';
 import DynamicIcon from 'components/DynamicIcon';
+import { commonRoutes } from 'routes';
 export default function SideBar() {
   //@ts-ignore
   const collapsed = useSelector((state) => state.sidebar.collapsed)
@@ -14,16 +14,18 @@ export default function SideBar() {
     dispatch(setCollapsed(collapsed))
   };
 
-  return(
+  return (
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: 'white' }}>
-    <Menu mode="inline" style={{ marginTop: '25px' }}>
-      <MenuItem key="1">
-        <MenuItemContent>
-        <DynamicIcon type={'HomeFilled'} />
-          {!collapsed ? 'Home' : ''}
-        </MenuItemContent>
-      </MenuItem>
-    </Menu>
-  </Sider>
+      <Menu mode="inline" style={{ marginTop: '25px' }}>
+        {commonRoutes.map((route, index) => (
+          <MenuItem key={index}>
+            <MenuItemContent>
+              <DynamicIcon type={route.icon} />
+              {!collapsed ? route.title : ''}
+            </MenuItemContent>
+          </MenuItem>)
+        )}
+      </Menu>
+    </Sider>
   )
 }
