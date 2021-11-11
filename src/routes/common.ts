@@ -5,9 +5,9 @@ const routes = [
 
   {
     component:ListNotes,
-    title:'Anotações',
+    title:'Home',
     path:'/notes',
-    icon:''
+    icon:'HomeFilled'
   },
   {
     component:UpdateNotes,
