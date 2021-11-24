@@ -1,7 +1,7 @@
 
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setToken, setUserId } from 'store/modules/auth/reducer'
+import { setToken} from 'store/modules/auth/reducer'
 
 import {
   FormContainer,
@@ -40,7 +40,6 @@ const SignIn = () => {
 
       const { token, user } = response.data;
 
-      dispatch(setUserId(user._id));
       dispatch(setToken('Bearer '+token));
       dispatch(setIsLoading(false));
 
