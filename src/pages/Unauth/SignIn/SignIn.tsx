@@ -1,8 +1,7 @@
 
-import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setToken } from 'store/modules/auth/reducer'
+import { setToken, setUserId } from 'store/modules/auth/reducer'
 
 import {
   FormContainer,
@@ -41,7 +40,7 @@ const SignIn = () => {
 
       const { token, user } = response.data;
 
-      localStorage.setItem("userId", user._id);
+      dispatch(setUserId(user._id));
       dispatch(setToken('Bearer '+token));
       dispatch(setIsLoading(false));
 
@@ -72,7 +71,6 @@ const SignIn = () => {
       <Wrapper backgroundImage={backgroundImage}>
         <Content>
           <PresentationSection>
-            {/* <Title level={1}>Let's write Some Notes</Title> */}
           </PresentationSection>
           <FormSection>
             <Divider>Login</Divider>
