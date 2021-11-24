@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 import { useDispatch } from 'react-redux';
 import { setIsLoading } from 'store/modules/loading/reducer'
-
+import AddCategoryButton from 'components/AddCategoryButton';
 import {
   Wrapper,
   NoteContainer,
@@ -160,6 +160,7 @@ export default function UpdateNotes() {
       <DesktopBreakPoint>
         <Wrapper>
           <PageTitle>Let's Write a Note !</PageTitle>
+          <AddCategoryButton />
           <NoteContainer>
             <NoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <NoteBody>
