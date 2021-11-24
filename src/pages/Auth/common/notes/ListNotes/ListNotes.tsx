@@ -2,7 +2,6 @@ import { Link,useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import api from 'services/api'
-import to from 'await-to-js'
 import {
   Wrapper,
   NameTitle,
