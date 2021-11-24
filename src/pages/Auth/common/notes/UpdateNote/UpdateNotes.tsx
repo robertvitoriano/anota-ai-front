@@ -63,8 +63,7 @@ export default function UpdateNotes() {
     } catch (error: any) {
        console.error(error);
        dispatch(setToken(''));
-       //@ts-ignore
-        window.location.href = '/'
+       history.push('/')
 
     }
   }
@@ -110,8 +109,7 @@ export default function UpdateNotes() {
         'error'
       ).then(() => {
         dispatch(setToken(''));
-        //@ts-ignore
-        window.location.href = '/'
+        history.push('/')
       })
 
     })
@@ -150,8 +148,7 @@ export default function UpdateNotes() {
         'error'
       ).then(() => {
         dispatch(setToken(''));
-        //@ts-ignore
-        window.location.href = '/'
+        history.push('/')
       })
 
     })

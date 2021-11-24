@@ -69,8 +69,7 @@ const ListNotes = () => {
           'error'
         ).then(() => {
           dispatch(setToken(''));
-          //@ts-ignore
-          window.location.href = '/'
+          history.push('/')
         })
 
       }

@@ -3,8 +3,10 @@ import Swal from 'sweetalert2'
 import logoutIcon from 'assets/logout.png'
 import { useDispatch } from 'react-redux'
 import { setToken } from 'store/modules/auth/reducer'
+import { useHistory } from 'react-router-dom'
 const LogoutButton = () =>{
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const onLogout = () => {
     Swal.fire({
@@ -15,7 +17,7 @@ const LogoutButton = () =>{
     }).then((result) => {
       if (result.value) {
         dispatch(setToken(''));
-        window.location.href = '/'
+        history.push('/')
       }
     })
 
