@@ -14,7 +14,7 @@ ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor} />
       <LoadingModal />
-      <AddCategoryModal />
+      {/* <AddCategoryModal /> */}
       <App />
     </Provider>
   </React.StrictMode>,
