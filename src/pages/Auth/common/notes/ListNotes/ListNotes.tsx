@@ -20,18 +20,18 @@ import {
 } from './styles'
 import plusSign from 'assets/plus-sign.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setIsLoading } from 'store/modules/loading/reducer'
-
 
 const ListNotes = () => {
 
   const [userName, setUserName] = useState('')
   const [notes, setNotes] = useState([])
-
+  
   const history = useHistory()
   const dispatch = useDispatch()
-
+  //@ts-ignore
+  const token = useSelector(state => state.auth.token)
   useEffect(() => {
     getUserFirstaname()
     loadNotes()
@@ -46,7 +46,7 @@ const ListNotes = () => {
       try{
       const response =  await api.get("/users/me",{
           headers:{
-            authorization: localStorage.getItem('token') || ''
+            authorization: token || ''
           }
         });
 
@@ -80,7 +80,7 @@ const ListNotes = () => {
 
       const response = await api.get("/notes",{
         headers:{
-          authorization: localStorage.getItem('token') || ''
+          authorization: token || ''
         }
       });
 

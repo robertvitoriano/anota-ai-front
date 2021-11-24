@@ -3,7 +3,7 @@ import { useParams, useHistory, useLocation } from 'react-router';
 import api from 'services/api';
 import Swal from 'sweetalert2'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoading } from 'store/modules/loading/reducer'
 import AddCategoryButton from 'components/AddCategoryButton';
 import {
@@ -28,6 +28,7 @@ export default function UpdateNotes() {
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const token = useSelector((state: any) => state.auth.token);
 
 
   useEffect(() => {
@@ -46,7 +47,7 @@ export default function UpdateNotes() {
         const response = await api.get(`/notes/${id}`,
           {
             headers: {
-              authorization: localStorage.getItem('token') || ''
+              authorization: token || ''
             }
           });
 
@@ -79,14 +80,14 @@ export default function UpdateNotes() {
       await api.post('/notes', { title: noteTitle, body: noteBody },
         {
           headers: {
-            authorization: localStorage.getItem('token') || ''
+            authorization: token || ''
           }
         });
       }else{
         await api.post('/notes/' + id, { title: noteTitle, body: noteBody },
         {
           headers: {
-            authorization: localStorage.getItem('token') || ''
+            authorization: token || ''
           }
         });
       }
@@ -127,7 +128,7 @@ export default function UpdateNotes() {
       await api.delete('/notes/' + id,
         {
           headers: {
-            authorization: localStorage.getItem('token') || ''
+            authorization: token || ''
           },
         });
       if (result.value) {
