@@ -1,7 +1,10 @@
 import {Wrapper, LogoutIcon}  from './styles'
 import Swal from 'sweetalert2'
 import logoutIcon from 'assets/logout.png'
+import { useDispatch } from 'react-redux'
+import { setToken } from 'store/modules/auth/reducer'
 const LogoutButton = () =>{
+  const dispatch = useDispatch()
 
   const onLogout = () => {
     Swal.fire({
@@ -11,7 +14,7 @@ const LogoutButton = () =>{
       confirmButtonColor: '#3085d6',  // blue     
     }).then((result) => {
       if (result.value) {
-        localStorage.removeItem('token')
+        dispatch(setToken(''));
         window.location.href = '/'
       }
     })

@@ -22,6 +22,7 @@ import plusSign from 'assets/plus-sign.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsLoading } from 'store/modules/loading/reducer'
+import { setToken } from 'store/modules/auth/reducer'
 
 const ListNotes = () => {
 
@@ -67,7 +68,7 @@ const ListNotes = () => {
           String(error.message),
           'error'
         ).then(() => {
-          localStorage.removeItem('token')
+          dispatch(setToken(''));
           //@ts-ignore
           window.location.href = '/'
         })

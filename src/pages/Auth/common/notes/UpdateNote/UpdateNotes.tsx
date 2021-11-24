@@ -18,6 +18,7 @@ import {
   MobileNoteBody,
   MobileNoteTitleInput
 } from './styled'
+import { setToken } from 'store/modules/auth/reducer';
 export default function UpdateNotes() {
 
   const location = useLocation();
@@ -61,8 +62,8 @@ export default function UpdateNotes() {
 
     } catch (error: any) {
        console.error(error);
-        localStorage.removeItem('token')
-        //@ts-ignore
+       dispatch(setToken(''));
+       //@ts-ignore
         window.location.href = '/'
 
     }
@@ -108,7 +109,7 @@ export default function UpdateNotes() {
         String(error.message),
         'error'
       ).then(() => {
-        localStorage.removeItem('token')
+        dispatch(setToken(''));
         //@ts-ignore
         window.location.href = '/'
       })
@@ -148,7 +149,7 @@ export default function UpdateNotes() {
         String(error.message),
         'error'
       ).then(() => {
-        localStorage.removeItem('token')
+        dispatch(setToken(''));
         //@ts-ignore
         window.location.href = '/'
       })
