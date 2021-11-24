@@ -33,6 +33,16 @@ border-radius: 15px;
 display:flex;
 justify-content:center;
 align-items:center;
+
+opacity:0.9;
+position:absolute;
+
+`
+
+export const CategoryList = styled.div`
+height:100%;
+width:100%;
+position:relative;
 overflow:auto;
 &::-webkit-scrollbar {
     width: 1em;
@@ -51,14 +61,6 @@ overflow:auto;
   display:none;
   
 }
-opacity:0.9;
-
-`
-
-export const CategoryList = styled.div`
-height:100%;
-width:100%;
-position:relative;
 
 
 `;
@@ -80,3 +82,30 @@ font-size: 1.5rem;
 }
 `;
 
+export const CreateCategoryButton = styled.div`
+width:4rem;
+height:4rem;
+border-radius:50%;
+background-color: #817059;
+color:white;
+font-weight: bold;
+font-size: 3.5rem;
+position:absolute;
+bottom:0.5rem;
+right:0.5rem;
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+:hover{
+  cursor: pointer;
+  background-color: #370502;
+  color:white;
+}
+`;
+
+export const CreateCategoryInput = styled.input`
+position:absolute;
+bottom:0.5rem;
+right:0.5rem;
+`;

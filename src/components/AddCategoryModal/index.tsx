@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Translucent, Wrapper, Modal, Category, CategoryList} from "./styled";
+import { Translucent, Wrapper, Modal, Category, CategoryList, CreateCategoryButton} from "./styled";
 
 export default function AddCategoryModal() {
 
@@ -15,6 +15,7 @@ export default function AddCategoryModal() {
                 Hello World
               </Category>)}
           </CategoryList>
+          <CreateCategoryButton >+</CreateCategoryButton>
         </Modal>
       </Wrapper>
     </>
