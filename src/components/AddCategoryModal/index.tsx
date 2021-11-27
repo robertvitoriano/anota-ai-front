@@ -3,29 +3,26 @@ import { Translucent, Wrapper, Modal, Category, CategoryList, CreateCategoryButt
 
 export default function AddCategoryModal() {
 
-  const [isOpen, setIsOpen] = useState(false);
   const [array, setArray] = useState([1, 2, 3, 5, 4, 5, 5, 5, 5, 5, 55]);
   const [isCreatingCategory, setIsCreatingCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
-  const categoryListRef = useRef(null);
-  const newCategoryInputRef = useRef(null);
+  const categoryListRef = useRef<HTMLDivElement>(null);
+  const newCategoryInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isCreatingCategory) {
-      //@ts-ignore
-      categoryListRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-      //@ts-ignore
-      newCategoryInputRef.current.focus()
+      if (categoryListRef.current) {
+        categoryListRef.current.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }
+      if (newCategoryInputRef.current) newCategoryInputRef.current.focus()
     }
 
   }, [isCreatingCategory])
 
   const handleCategoryCreation = async () => {
-    //@ts-ignore
-    console.log(categoryListRef.current.scrollHeight)
     if (!newCategory) {
       setIsCreatingCategory(!isCreatingCategory)
     }
