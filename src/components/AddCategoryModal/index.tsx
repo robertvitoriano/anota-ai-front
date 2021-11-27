@@ -6,10 +6,11 @@ import { setToken } from "store/modules/auth/reducer";
 import { useHistory, useLocation } from "react-router-dom";
 import api from "services/api";
 interface props {
-  isCreatingNote: boolean;
+  isCreating: boolean;
   show: boolean;
+  onHide: () => void;
 }
-export default function AddCategoryModal({ isCreatingNote, show }: props) {
+export default function AddCategoryModal({ isCreating, show, onHide }: props) {
 
   const [categories, setCategories] = useState([]);
   const [isCreatingCategory, setIsCreatingCategory] = useState(false);
@@ -97,9 +98,13 @@ export default function AddCategoryModal({ isCreatingNote, show }: props) {
 
   }
 
+  const hide = () => {
+    setShowModal(false);
+    onHide();
+  }
   return (
     <>
-      {showModal && <Wrapper onClick={() => setShowModal(false)}>
+      {showModal && <Wrapper onClick={hide}>
         <Translucent />
         <Modal >
           <CategoryList ref={categoryListRef}>

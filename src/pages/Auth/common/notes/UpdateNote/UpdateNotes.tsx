@@ -6,6 +6,7 @@ import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilit
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoading } from 'store/modules/loading/reducer'
 import AddCategoryButton from 'components/AddCategoryButton';
+import AddCategoryModal from 'components/AddCategoryModal';
 import {
   Wrapper,
   NoteContainer,
@@ -26,6 +27,7 @@ export default function UpdateNotes() {
   const [noteTitle, setNoteTitle] = useState<string>();
   const [noteBody, setNoteBody] = useState<string>();
   const [isCreating, setIsCreating] = useState<boolean>(location.pathname.includes('create') );
+  const [showCategoriesModal, setShowCategoriesModal] = useState<boolean>(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -157,9 +159,12 @@ export default function UpdateNotes() {
   return (
     <>
       <DesktopBreakPoint>
+       {showCategoriesModal && <AddCategoryModal isCreating = {false} show ={showCategoriesModal} onHide = {()=> setShowCategoriesModal(false)}/>}
         <Wrapper>
           <PageTitle>Let's Write a Note !</PageTitle>
-          <AddCategoryButton />
+         <AddCategoryButton  onClick = {()=>setShowCategoriesModal(true)}/>
+
+
           <NoteContainer>
             <NoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <NoteBody>

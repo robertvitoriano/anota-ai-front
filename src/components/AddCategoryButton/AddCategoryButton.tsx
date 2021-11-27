@@ -2,12 +2,16 @@ import {
   Wrapper,
   PlusSign
 } from './styles';
-import AddCategoryModal from 'components/AddCategoryModal';
-export default function AddCategoryButton() {
+
+interface props {
+  onClick: () => void;
+}
+
+export default function AddCategoryButton(props: props) {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper {...props}>
         <PlusSign />
         Add Category
       </Wrapper>

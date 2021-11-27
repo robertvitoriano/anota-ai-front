@@ -22,13 +22,11 @@ import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilit
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsLoading } from 'store/modules/loading/reducer'
 import { setToken } from 'store/modules/auth/reducer'
-import AddCategoryModal from 'components/AddCategoryModal'
 
 const ListNotes = () => {
 
   const [userName, setUserName] = useState('')
   const [notes, setNotes] = useState([])
-  const [showCategoriesModal, setShowCategoriesModal] = useState(false)
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -105,7 +103,6 @@ const ListNotes = () => {
 
   return (
     <>
-      <AddCategoryModal isCreatingNote={false}  show = {showCategoriesModal}/>
       <DesktopBreakPoint>
         <Wrapper>
           <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
