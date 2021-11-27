@@ -159,7 +159,7 @@ export default function UpdateNotes() {
   return (
     <>
       <DesktopBreakPoint>
-       {showCategoriesModal && <AddCategoryModal isCreating = {false} show ={showCategoriesModal} onHide = {()=> setShowCategoriesModal(false)}/>}
+       {showCategoriesModal && <AddCategoryModal isCreating = {isCreating} show ={showCategoriesModal} onHide = {()=> setShowCategoriesModal(false)}/>}
         <Wrapper>
           <PageTitle>Let's Write a Note !</PageTitle>
          <AddCategoryButton  onClick = {()=>setShowCategoriesModal(true)}/>

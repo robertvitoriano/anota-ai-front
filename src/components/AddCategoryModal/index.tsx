@@ -37,9 +37,11 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
   }, [isCreatingCategory])
 
   useEffect(() => {
+    console.log('is creating ',isCreatingCategory)
+
     fetchCategories();
   }, [])
-
+  
   const fetchCategories = async () => {
     const response = await api.get("/categories", {
       headers: {
@@ -48,7 +50,7 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
     })
     setCategories(response.data);
   }
-
+  
   const handleCategoryCreation = async () => {
     if (!newCategory) {
       setIsCreatingCategory(!isCreatingCategory)
@@ -58,7 +60,7 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
   const handleNewCategoryInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewCategory(e.target.value)
   }
-
+  
   const handleNewCategoryCreation = async (e: React.FormEvent<HTMLFormElement>) => {
     Swal.fire({
       title: 'Do You Really Want To Delete This Note ? ',
@@ -68,11 +70,11 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
       confirmButtonColor: '#3085d6',
     }).then(async (result) => {
       await api.delete('/notes/',
-        {
-          headers: {
-            authorization: token || ''
-          },
-        });
+      {
+        headers: {
+          authorization: token || ''
+        },
+      });
       if (result.value) {
         Swal.fire({
           title: "Note Successufully Deleted!",
@@ -82,26 +84,26 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
         }).then(() => history.push('/notes'))
       }
     }).catch((error) => {
-
+      
       console.error(error)
-
+      
       return Swal.fire(
         'Um erro aconteceu',
         String(error.message),
         'error'
-      ).then(() => {
-        dispatch(setToken(''));
-        history.push('/')
+        ).then(() => {
+          dispatch(setToken(''));
+          history.push('/')
+        })
+
       })
-
-    })
-
-  }
-
-  const hide = () => {
-    setShowModal(false);
-    onHide();
-  }
+      
+    }
+    
+    const hide = () => {
+      setShowModal(false);
+      onHide();
+    }
   return (
     <>
       {showModal && <Wrapper >
