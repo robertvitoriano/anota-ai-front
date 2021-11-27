@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Translucent, Wrapper, Modal, Category, CategoryList, CreateCategoryButton, NewCategoryInput } from "./styled";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
+import { setIsLoading } from "store/modules/loading/reducer";
 import { setToken } from "store/modules/auth/reducer";
 import { useHistory, useLocation } from "react-router-dom";
 import api from "services/api";
@@ -37,44 +38,50 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
   }, [isCreatingCategory])
 
   useEffect(() => {
-    console.log('is creating ',isCreatingCategory)
+    console.log('is creating ', isCreatingCategory)
 
     fetchCategories();
   }, [])
-  
+
   const fetchCategories = async () => {
+    dispatch(setIsLoading(true));
     const response = await api.get("/categories", {
       headers: {
         Authorization: token || ''
       }
     })
     setCategories(response.data);
+    dispatch(setIsLoading(false));
   }
-  
+
   const handleCategoryCreation = async () => {
     if (!newCategory) {
       setIsCreatingCategory(!isCreatingCategory)
+    } else {
+      createNewCategory();
     }
   }
 
   const handleNewCategoryInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewCategory(e.target.value)
   }
-  
-  const handleNewCategoryCreation = async (e: React.FormEvent<HTMLFormElement>) => {
+
+  const createNewCategory = async () => {
     Swal.fire({
-      title: 'Do You Really Want To Delete This Note ? ',
-      text: `You Won't be Able To Undo This !`,
+      title: 'Create category ? ',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
     }).then(async (result) => {
-      await api.delete('/notes/',
-      {
-        headers: {
-          authorization: token || ''
+      await api.post('/categories/',
+        {
+          name: newCategory
         },
-      });
+        {
+          headers: {
+            authorization: token || ''
+          },
+        });
       if (result.value) {
         Swal.fire({
           title: "Note Successufully Deleted!",
@@ -84,35 +91,36 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
         }).then(() => history.push('/notes'))
       }
     }).catch((error) => {
-      
+
       console.error(error)
-      
+
       return Swal.fire(
         'Um erro aconteceu',
         String(error.message),
         'error'
-        ).then(() => {
-          dispatch(setToken(''));
-          history.push('/')
-        })
-
+      ).then(() => {
+        dispatch(setToken(''));
+        history.push('/')
       })
-      
-    }
-    
-    const hide = () => {
-      setShowModal(false);
-      onHide();
-    }
+
+    })
+
+  }
+
+  const hide = () => {
+    setShowModal(false);
+    onHide();
+  }
   return (
     <>
       {showModal && <Wrapper >
         <Translucent onClick={hide} />
         <Modal >
           <CategoryList ref={categoryListRef}>
-            {categories.map(item => <Category>
-              Hello World
-            </Category>)}
+            {categories.map(({ name }) =>
+              <Category>
+                {name}
+              </Category>)}
             {isCreatingCategory
               && <Category >
                 <NewCategoryInput value={newCategory} onChange={handleNewCategoryInput} placeholder="Type your new category" ref={newCategoryInputRef} />
