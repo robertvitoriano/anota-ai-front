@@ -109,3 +109,18 @@ position:absolute;
 bottom:0.5rem;
 right:0.5rem;
 `;
+
+export const NewCategoryInput =  styled.input`
+border:none;
+background-color: #EFEFEF;
+outline:none;
+font-size: 1.5rem;
+font-weight: bold;
+text-align: center;
+:hover{
+  cursor: text;
+  background-color: #817059;
+  color:white;
+}
+
+`;
