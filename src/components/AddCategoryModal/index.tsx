@@ -13,7 +13,7 @@ interface props {
 export default function AddCategoryModal({ isCreating, show, onHide }: props) {
 
   const [categories, setCategories] = useState([]);
-  const [isCreatingCategory, setIsCreatingCategory] = useState(false);
+  const [isCreatingCategory, setIsCreatingCategory] = useState(isCreating);
   const [newCategory, setNewCategory] = useState("");
   const [showModal, setShowModal] = useState(show);
   const categoryListRef = useRef<HTMLDivElement>(null);
@@ -104,8 +104,8 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
   }
   return (
     <>
-      {showModal && <Wrapper onClick={hide}>
-        <Translucent />
+      {showModal && <Wrapper >
+        <Translucent onClick={hide} />
         <Modal >
           <CategoryList ref={categoryListRef}>
             {categories.map(item => <Category>

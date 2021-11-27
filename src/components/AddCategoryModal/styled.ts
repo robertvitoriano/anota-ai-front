@@ -33,8 +33,6 @@ border-radius: 15px;
 display:flex;
 justify-content:center;
 align-items:center;
-
-opacity:0.9;
 position:absolute;
 
 `
