@@ -87,7 +87,11 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
           text: `You Deleted a Note !`,
           icon: "success",
           confirmButtonText: 'Ok !'
-        }).then(() => history.push('/notes'))
+        }).then(async() => {
+           await fetchCategories()
+            setNewCategory("");
+            setIsCreatingCategory(false)
+          })
       }
     }).catch((error) => {
 

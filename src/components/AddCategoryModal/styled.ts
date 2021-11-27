@@ -1,3 +1,4 @@
+import { Input } from './../../pages/Unauth/SignUp/styles';
 import styled from "styled-components";
 
 interface CategoryProps {
@@ -71,17 +72,22 @@ overflow:auto;
 export const Category = styled.div<CategoryProps>`
 padding:2rem;
 border:1px solid black;
-color: ${({isSelected})=> isSelected ? "white" : "black"};
+color: ${({ isSelected }) => isSelected ? "white" : "black"};
 text-align:center;
-background-color:${ ({isSelected}) => isSelected?'#817059':'#EFEFEF'};
+background-color:${({ isSelected }) => isSelected ? '#817059' : '#EFEFEF'};
 font-weight: bold;
 font-size: 1.5rem;
 :hover{
   cursor: pointer;
-  background-color:${({isSelected}) => isSelected?'#817059':'#e8e6e6'};
-  color:${({isSelected})=> isSelected ? "white" : "black"};
+  background-color:${({ isSelected }) => isSelected ? '#817059' : '#cfcccc'};
+  color:${({ isSelected }) => isSelected ? "white" : "black"};
+
+  input{
+    background-color:#cfcccc;
+    color:black;
 }
-`;
+}
+`
 
 export const CreateCategoryButton = styled.div`
 width:4rem;
@@ -103,6 +109,7 @@ align-items:center;
   background-color: #370502;
   color:white;
 }
+
 `;
 
 export const CreateCategoryInput = styled.input`
@@ -111,17 +118,18 @@ bottom:0.5rem;
 right:0.5rem;
 `;
 
-export const NewCategoryInput =  styled.input`
+export const NewCategoryInput = styled.input`
 border:none;
 background-color: #EFEFEF;
 outline:none;
 font-size: 1.5rem;
 font-weight: bold;
 text-align: center;
+width:100%;
+height:100%;
 :hover{
   cursor: text;
-  background-color: #817059;
-  color:white;
+  background-color: #cfcccc;
 }
 
 `;
