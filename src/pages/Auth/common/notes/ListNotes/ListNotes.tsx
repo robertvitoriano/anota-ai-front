@@ -28,6 +28,7 @@ const ListNotes = () => {
 
   const [userName, setUserName] = useState('')
   const [notes, setNotes] = useState([])
+  const [showCategoriesModal, setShowCategoriesModal] = useState(false)
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -104,7 +105,7 @@ const ListNotes = () => {
 
   return (
     <>
-      <AddCategoryModal isCreatingNote={false} />
+      <AddCategoryModal isCreatingNote={false}  show = {showCategoriesModal}/>
       <DesktopBreakPoint>
         <Wrapper>
           <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
