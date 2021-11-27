@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+interface CategoryProps {
+  isSelected?: boolean;
+}
+
+
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -63,20 +68,18 @@ overflow:auto;
 
 `;
 
-
-
-export const Category = styled.div`
+export const Category = styled.div<CategoryProps>`
 padding:2rem;
 border:1px solid black;
-color:black;
+color: ${({isSelected})=> isSelected ? "white" : "black"};
 text-align:center;
-background-color: #EFEFEF;
+background-color:${ ({isSelected}) => isSelected?'#817059':'#EFEFEF'};
 font-weight: bold;
 font-size: 1.5rem;
 :hover{
   cursor: pointer;
-  background-color: #817059;
-  color:white;
+  background-color:${({isSelected}) => isSelected?'#817059':'#e8e6e6'};
+  color:${({isSelected})=> isSelected ? "white" : "black"};
 }
 `;
 
@@ -120,5 +123,19 @@ text-align: center;
   background-color: #817059;
   color:white;
 }
+
+`;
+
+export const SelectCategoryButton = styled.div`
+width:4rem;
+height:4rem;
+border-radius:50%;
+background-color: #817059;
+color:white;
+font-weight: bold;
+font-size: 3.5rem;
+position:absolute;
+bottom:0.5rem;
+right:0.5rem;
 
 `;
