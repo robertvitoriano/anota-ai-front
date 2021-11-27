@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   display: flex;
@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
   z-index: 9;
 `;
 export const Translucent = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: black;
   position: absolute;
   top: 0;

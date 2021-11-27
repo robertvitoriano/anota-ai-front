@@ -1,4 +1,4 @@
-import { Link,useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import api from 'services/api'
@@ -22,12 +22,13 @@ import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilit
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsLoading } from 'store/modules/loading/reducer'
 import { setToken } from 'store/modules/auth/reducer'
+import AddCategoryModal from 'components/AddCategoryModal'
 
 const ListNotes = () => {
 
   const [userName, setUserName] = useState('')
   const [notes, setNotes] = useState([])
-  
+
   const history = useHistory()
   const dispatch = useDispatch()
   //@ts-ignore
@@ -43,42 +44,42 @@ const ListNotes = () => {
   const getUserFirstaname = async () => {
     dispatch(setIsLoading(true))
 
-      try{
-      const response =  await api.get("/users/me",{
-          headers:{
-            authorization: token || ''
-          }
-        });
+    try {
+      const response = await api.get("/users/me", {
+        headers: {
+          authorization: token || ''
+        }
+      });
 
-        //@ts-ignore
-        const { name } = response?.data
-        setUserName(name)
+      //@ts-ignore
+      const { name } = response?.data
+      setUserName(name)
 
-        dispatch(setIsLoading(false))
+      dispatch(setIsLoading(false))
 
 
-      }catch(error:any){
-        dispatch(setIsLoading(false));
+    } catch (error: any) {
+      dispatch(setIsLoading(false));
 
-        console.error(error)
-  
-       return Swal.fire(
-          'Um erro aconteceu',
-          String(error.message),
-          'error'
-        ).then(() => {
-          dispatch(setToken(''));
-          history.push('/')
-        })
+      console.error(error)
 
-      }
+      return Swal.fire(
+        'Um erro aconteceu',
+        String(error.message),
+        'error'
+      ).then(() => {
+        dispatch(setToken(''));
+        history.push('/')
+      })
+
+    }
   }
   async function loadNotes() {
     try {
       dispatch(setIsLoading(true))
 
-      const response = await api.get("/notes",{
-        headers:{
+      const response = await api.get("/notes", {
+        headers: {
           authorization: token || ''
         }
       });
@@ -90,7 +91,7 @@ const ListNotes = () => {
       dispatch(setIsLoading(false))
 
 
-    } catch (error:any) {
+    } catch (error: any) {
       console.error(error)
 
       Swal.fire(
@@ -103,6 +104,7 @@ const ListNotes = () => {
 
   return (
     <>
+      <AddCategoryModal isCreatingNote={false} />
       <DesktopBreakPoint>
         <Wrapper>
           <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
