@@ -25,7 +25,7 @@ export default function Layout({ children }: Props) {
     <>
       <DesktopBreakPoint>
         <AndDesignLayout style={{ minHeight: '100%' }}> 
-        <Sidebar/>
+        {/* <Sidebar/> */}
           <AndDesignLayout className="site-layout">
             <Content onClick = {()=>dispatch(setCollapsed(true))}>
               <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage}>
