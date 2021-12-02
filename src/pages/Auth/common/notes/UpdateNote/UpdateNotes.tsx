@@ -158,8 +158,8 @@ export default function UpdateNotes() {
 
   return (
     <>
-      <DesktopBreakPoint>
        {showCategoriesModal && <AddCategoryModal isCreating = {isCreating} show ={showCategoriesModal} onHide = {()=> setShowCategoriesModal(false)}/>}
+      <DesktopBreakPoint>
         <Wrapper>
           <PageTitle>Let's Write a Note !</PageTitle>
          <AddCategoryButton  onClick = {()=>setShowCategoriesModal(true)}/>
@@ -181,6 +181,7 @@ export default function UpdateNotes() {
       <PhoneBreakPoint>
         <Wrapper>
           <PageTitle mobile>Let's Write a Note !</PageTitle>
+          <AddCategoryButton  onClick = {()=>setShowCategoriesModal(true)}/>
           <MobileNoteContainer>
             <MobileNoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <MobileNoteBody>

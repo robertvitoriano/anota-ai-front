@@ -61,7 +61,7 @@ export const Button = styled.div`
 }
 border-radius: 5%;
 background-color: #F1D9CF;
-padding: 1rem;
+padding: 2%;
 font-weight: bolder;
 font-family: 'Calligraffitti', cursive;
 font-size: 1.5rem;
