@@ -135,15 +135,15 @@ height:100%;
 `;
 
 export const SelectCategoryButton = styled.div`
-width:4rem;
-height:4rem;
-border-radius:50%;
-background-color: #817059;
-color:white;
+background-color: #F1D9CF;
+color:black;
 font-weight: bold;
-font-size: 3.5rem;
+font-size: 1.5rem;
 position:absolute;
 bottom:0.5rem;
-right:0.5rem;
+right:30%;
+padding:0.5rem;
+border: 1px solid black;
+cursor: pointer;
 
 `;

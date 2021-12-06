@@ -140,7 +140,7 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
                 <NewCategoryInput value={newCategory} onChange={handleNewCategoryInput} placeholder="Type your new category" ref={newCategoryInputRef} />
               </Category>}
           </CategoryList>
-          <SelectCategoryButton />
+          {selectedCategoryId?<SelectCategoryButton >Select Category</SelectCategoryButton>:''}
           {newCategory ? <CreateCategoryButton onClick={handleCategoryCreation} >&#10003;</CreateCategoryButton> : <CreateCategoryButton onClick={handleCategoryCreation} >+</CreateCategoryButton>}
         </Modal>
       </Wrapper>}
