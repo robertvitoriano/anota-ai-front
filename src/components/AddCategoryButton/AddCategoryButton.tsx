@@ -12,7 +12,7 @@ export default function AddCategoryButton({  selectedCategoryName, ...rest }: pr
 
   return (
     <>
-      <Wrapper {...rest}>
+      <Wrapper {...rest} selectedCategoryName={String(selectedCategoryName)}>
         {!selectedCategoryName?<PlusSign />:''}
         {!selectedCategoryName?'Add Category':''}
         {selectedCategoryName}

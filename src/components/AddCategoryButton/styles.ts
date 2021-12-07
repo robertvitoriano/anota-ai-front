@@ -1,18 +1,24 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+    selectedCategoryName: string
+
+}
+
+export const Wrapper = styled.div<WrapperProps>`
 border: dashed 4px #370502;
 display: flex;
-justify-content:space-evenly;
+justify-content:${({selectedCategoryName})=>selectedCategoryName?'center':'space-evenly'};
 align-items: center;
-width:10rem;
+width:${({selectedCategoryName})=>selectedCategoryName?'none':'10rem'};
 color: #370502;
 font-weight: bold;
-/* font-family: 'Calligraffitti', cursive; */
 border-radius: 10%;
+font-size: ${({selectedCategoryName})=>selectedCategoryName?'1.2rem':'normal'};
 &:hover{
     cursor: pointer;
 }
+padding: ${({selectedCategoryName})=>selectedCategoryName?'1rem':'0'};
 `
 
 export const PlusSign = styled.div`
