@@ -100,7 +100,7 @@ export default function UpdateNotes() {
           });
 
       } else {
-        await api.patch('/notes/' + id, { title: noteTitle, body: noteBody },
+        await api.post('/notes/' + id, { title: noteTitle, body: noteBody, categoryId: selectedCategoryId },
           {
             headers: {
               authorization: token || ''
