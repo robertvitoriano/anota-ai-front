@@ -5,17 +5,17 @@ import {
 
 interface props {
   onClick: () => void;
-  text?: string;
+  selectedCategoryName?: string;
 }
 
-export default function AddCategoryButton({  text, ...rest }: props) {
+export default function AddCategoryButton({  selectedCategoryName, ...rest }: props) {
 
   return (
     <>
       <Wrapper {...rest}>
-        {!text?<PlusSign />:''}
-        {!text?'Add Category':''}
-        {text}
+        {!selectedCategoryName?<PlusSign />:''}
+        {!selectedCategoryName?'Add Category':''}
+        {selectedCategoryName}
       </Wrapper>
     </>
   )
