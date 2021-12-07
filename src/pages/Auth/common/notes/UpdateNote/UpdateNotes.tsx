@@ -35,9 +35,18 @@ export default function UpdateNotes() {
   const dispatch = useDispatch();
   const token = useSelector((state: any) => state.auth.token);
 
+  interface Note {
+    _id: string;
+    title: string;
+    body: string;
+    categoryId: string;
+    categoryName: string;
+
+  }
+
 
   useEffect(() => {
-    fetchNote();
+    fetchNote(); 
   }, []);
 
   // @ts-ignore
@@ -56,10 +65,12 @@ export default function UpdateNotes() {
             }
           });
 
-        const { title, body } = response.data;
+        const { title, body, categoryId, categoryName }:Note = response.data;
 
         setNoteTitle(title);
         setNoteBody(body);
+        setSelectedCategoryName(categoryName);
+        setSelectedCategoryId(categoryId);
         dispatch(setIsLoading(false));
 
       }
