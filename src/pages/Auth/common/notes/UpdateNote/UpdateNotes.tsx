@@ -170,7 +170,7 @@ export default function UpdateNotes() {
       <DesktopBreakPoint>
         <Wrapper>
           <PageTitle>Let's Write a Note !</PageTitle>
-          <AddCategoryButton text = {selectedCategoryName}  onClick={() => setShowCategoriesModal(true)} />
+          <AddCategoryButton selectedCategoryName = {selectedCategoryName}  onClick={() => setShowCategoriesModal(true)} />
           <NoteContainer>
             <NoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <NoteBody>
@@ -187,7 +187,7 @@ export default function UpdateNotes() {
       <PhoneBreakPoint>
         <Wrapper>
           <PageTitle mobile>Let's Write a Note !</PageTitle>
-          <AddCategoryButton text = {'Add Category'} onClick={() => setShowCategoriesModal(true)} />
+          <AddCategoryButton selectedCategoryName = {'Add Category'} onClick={() => setShowCategoriesModal(true)} />
           <MobileNoteContainer>
             <MobileNoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <MobileNoteBody>
