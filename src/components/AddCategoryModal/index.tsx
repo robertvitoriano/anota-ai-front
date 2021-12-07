@@ -10,14 +10,16 @@ interface props {
   isCreating: boolean;
   show: boolean;
   onHide: () => void;
+  onSelect: (selectedCategoryId:string, selectedCategoryName:string) => void;
 }
-export default function AddCategoryModal({ isCreating, show, onHide }: props) {
+export default function AddCategoryModal({ isCreating, show, onHide, onSelect }: props) {
 
   const [categories, setCategories] = useState([]);
   const [isCreatingCategory, setIsCreatingCategory] = useState(isCreating);
   const [newCategory, setNewCategory] = useState("");
   const [showModal, setShowModal] = useState(show);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
+  const [selectedCategoryName, setSelectedCategoryName] = useState("");
   const categoryListRef = useRef<HTMLDivElement>(null);
   const newCategoryInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
@@ -114,15 +116,20 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
     setShowModal(false);
     onHide();
   }
-  const handleCategorySelection = (categoryId: string) => {
+  const handleCategorySelection = (categoryId: string, name:string) => {
     if (categoryId !== selectedCategoryId) {
       setSelectedCategoryId(categoryId);
+      setSelectedCategoryName(name);
     }
     else {
       setSelectedCategoryId('');
-
+      setSelectedCategoryName('');
     }
+  }
 
+  const handleCategorySelectionConfirmation = () => {
+    onSelect(selectedCategoryId, selectedCategoryName);
+    setShowModal(false);
   }
 
   return (
@@ -132,7 +139,7 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
         <Modal >
           <CategoryList ref={categoryListRef}>
             {categories.map(({ name, _id }) =>
-              <Category isSelected={_id === selectedCategoryId} onClick={() => handleCategorySelection(_id)}>
+              <Category isSelected={_id === selectedCategoryId} onClick={() => handleCategorySelection(_id, name)}>
                 {name}
               </Category>)}
             {isCreatingCategory
@@ -140,7 +147,7 @@ export default function AddCategoryModal({ isCreating, show, onHide }: props) {
                 <NewCategoryInput value={newCategory} onChange={handleNewCategoryInput} placeholder="Type your new category" ref={newCategoryInputRef} />
               </Category>}
           </CategoryList>
-          {selectedCategoryId?<SelectCategoryButton >Select Category</SelectCategoryButton>:''}
+          {selectedCategoryId?<SelectCategoryButton onClick ={handleCategorySelectionConfirmation} >Select Category</SelectCategoryButton>:''}
           {newCategory ? <CreateCategoryButton onClick={handleCategoryCreation} >&#10003;</CreateCategoryButton> : <CreateCategoryButton onClick={handleCategoryCreation} >+</CreateCategoryButton>}
         </Modal>
       </Wrapper>}

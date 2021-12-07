@@ -145,5 +145,9 @@ right:30%;
 padding:0.5rem;
 border: 1px solid black;
 cursor: pointer;
+&:hover{
+  background-color: #EFEFEF;
+  filter: brightness(0.8);
+}
 
 `;

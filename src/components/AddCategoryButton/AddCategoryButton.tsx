@@ -5,15 +5,17 @@ import {
 
 interface props {
   onClick: () => void;
+  text?: string;
 }
 
-export default function AddCategoryButton(props: props) {
+export default function AddCategoryButton({  text, ...rest }: props) {
 
   return (
     <>
-      <Wrapper {...props}>
-        <PlusSign />
-        Add Category
+      <Wrapper {...rest}>
+        {!text?<PlusSign />:''}
+        {!text?'Add Category':''}
+        {text}
       </Wrapper>
     </>
   )

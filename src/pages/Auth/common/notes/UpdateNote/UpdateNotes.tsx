@@ -26,8 +26,10 @@ export default function UpdateNotes() {
 
   const [noteTitle, setNoteTitle] = useState<string>();
   const [noteBody, setNoteBody] = useState<string>();
-  const [isCreating, setIsCreating] = useState<boolean>(location.pathname.includes('create') );
+  const [isCreating, setIsCreating] = useState<boolean>(location.pathname.includes('create'));
   const [showCategoriesModal, setShowCategoriesModal] = useState<boolean>(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
+  const [selectedCategoryName,setSelectedCategoryName] = useState<string>('');
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -63,14 +65,14 @@ export default function UpdateNotes() {
       }
 
     } catch (error: any) {
-       console.error(error);
-       dispatch(setToken(''));
-       history.push('/')
+      console.error(error);
+      dispatch(setToken(''));
+      history.push('/')
 
     }
   }
 
-  const createNote = async (mode:string) => {
+  const createNote = async (mode: string) => {
 
     Swal.fire({
       title: `Do you really want to ${mode} this note ? `,
@@ -78,25 +80,26 @@ export default function UpdateNotes() {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',  // blue     
     }).then(async (result) => {
-      if(mode==='create'){
-      await api.post('/notes', { title: noteTitle, body: noteBody },
-        {
-          headers: {
-            authorization: token || ''
-          }
-        });
-      }else{
-        await api.post('/notes/' + id, { title: noteTitle, body: noteBody },
-        {
-          headers: {
-            authorization: token || ''
-          }
-        });
+      if (mode === 'create') {
+        await api.post('/notes', { title: noteTitle, body: noteBody, categoryId: selectedCategoryId },
+          {
+            headers: {
+              authorization: token || ''
+            }
+          });
+
+      } else {
+        await api.patch('/notes/' + id, { title: noteTitle, body: noteBody },
+          {
+            headers: {
+              authorization: token || ''
+            }
+          });
       }
       if (result.value) {
         Swal.fire({
           title: `Note Successufully ${mode}d`!,
-          text: `You ${mode==='create'?'Created':'Updated'} a Note !`,
+          text: `You ${mode === 'create' ? 'Created' : 'Updated'} a Note !`,
           icon: "success",
           confirmButtonText: 'Ok !'
         }).then(() => history.push('/notes'))
@@ -115,6 +118,11 @@ export default function UpdateNotes() {
       })
 
     })
+  }
+
+  const handleCategorySelection = (categoryId: string, categoryName:string) => {
+    setSelectedCategoryId(categoryId);
+    setSelectedCategoryName(categoryName)
   }
 
   const deleteNote = async (id: string) => {
@@ -158,13 +166,11 @@ export default function UpdateNotes() {
 
   return (
     <>
-       {showCategoriesModal && <AddCategoryModal isCreating = {isCreating} show ={showCategoriesModal} onHide = {()=> setShowCategoriesModal(false)}/>}
+      {showCategoriesModal && <AddCategoryModal onSelect={handleCategorySelection} isCreating={isCreating} show={showCategoriesModal} onHide={() => setShowCategoriesModal(false)} />}
       <DesktopBreakPoint>
         <Wrapper>
           <PageTitle>Let's Write a Note !</PageTitle>
-         <AddCategoryButton  onClick = {()=>setShowCategoriesModal(true)}/>
-
-
+          <AddCategoryButton text = {selectedCategoryName}  onClick={() => setShowCategoriesModal(true)} />
           <NoteContainer>
             <NoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <NoteBody>
@@ -181,7 +187,7 @@ export default function UpdateNotes() {
       <PhoneBreakPoint>
         <Wrapper>
           <PageTitle mobile>Let's Write a Note !</PageTitle>
-          <AddCategoryButton  onClick = {()=>setShowCategoriesModal(true)}/>
+          <AddCategoryButton text = {'Add Category'} onClick={() => setShowCategoriesModal(true)} />
           <MobileNoteContainer>
             <MobileNoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <MobileNoteBody>
