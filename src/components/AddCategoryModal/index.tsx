@@ -129,7 +129,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
 
   const handleCategorySelectionConfirmation = () => {
     onSelect(selectedCategoryId, selectedCategoryName);
-    setShowModal(false);
+    hide();
   }
 
   return (

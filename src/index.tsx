@@ -8,7 +8,6 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store'
 import LoadingModal from './components/LoadingModal'
-import AddCategoryModal from 'components/AddCategoryModal';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
