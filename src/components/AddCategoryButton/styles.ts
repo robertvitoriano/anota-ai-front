@@ -18,7 +18,8 @@ font-size: ${({selectedCategoryName})=>selectedCategoryName?'1.2rem':'normal'};
 &:hover{
     cursor: pointer;
 }
-padding: ${({selectedCategoryName})=>selectedCategoryName?'1rem':'0'};
+padding: ${({selectedCategoryName})=>selectedCategoryName?'0.5rem':'0'};
+
 `
 
 export const PlusSign = styled.div`

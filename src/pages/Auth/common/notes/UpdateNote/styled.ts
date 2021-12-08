@@ -68,6 +68,12 @@ font-size: 1.5rem;
 text-align: center;
 
 `
+export const ButtonsWrapper = styled.div`
+display: flex;
+width: 30%;
+justify-content: space-evenly;
+
+`
 
 // MOBILE
 

@@ -17,7 +17,8 @@ import {
   Button,
   MobileNoteContainer,
   MobileNoteBody,
-  MobileNoteTitleInput
+  MobileNoteTitleInput,
+  ButtonsWrapper
 } from './styled'
 import { setToken } from 'store/modules/auth/reducer';
 export default function UpdateNotes() {
@@ -188,11 +189,13 @@ export default function UpdateNotes() {
               <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
             </NoteBody>
           </NoteContainer>
+          <ButtonsWrapper>
           <Button
             onClick={() => createNote(isCreating ? 'create' : 'update')}
           >{isCreating ? 'Create Note' : 'Update Note'}
           </Button>
           {isCreating ? '' : <Button onClick={() => deleteNote(id)}>Delete Note</Button>}
+          </ButtonsWrapper>
         </Wrapper>
       </DesktopBreakPoint>
       <PhoneBreakPoint>
