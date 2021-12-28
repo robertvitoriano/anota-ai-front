@@ -91,9 +91,8 @@ export default function UpdateNotes() {
     let missingFieldName = '';
     
     if(!selectedCategoryId) missingFieldName = 'Category';
-    if(!noteTitle) missingFieldName = 'Title';
     if(!noteBody) missingFieldName = 'Body';
-
+    if(!noteTitle) missingFieldName = 'Title';
 
     if(missingField){
       Swal.fire({
