@@ -69,6 +69,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
   }
 
   const handleCategoryCreation = async () => {
+    if(!isCreatingCategory) setSelectedCategoryId("");
     if (!newCategory) {
       setIsCreatingCategory(!isCreatingCategory)
     } else {
@@ -174,6 +175,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
     if (categoryId !== selectedCategoryId) {
       setSelectedCategoryId(categoryId);
       setSelectedCategoryName(name);
+      setIsCreatingCategory(false);
     }
     else {
       setSelectedCategoryId('');
@@ -206,7 +208,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
                 <NewCategoryInput value={newCategory} onChange={handleNewCategoryInput} placeholder="Type your new category" ref={newCategoryInputRef} />
               </Category>}
           </CategoryList>
-          {selectedCategoryId ? <SelectCategoryButton onClick={handleCategorySelectionConfirmation} >Select Category</SelectCategoryButton> : ''}
+          {selectedCategoryId? <SelectCategoryButton onClick={handleCategorySelectionConfirmation} >Select Category</SelectCategoryButton> : ''}
           {newCategory ? <CreateCategoryButton onClick={handleCategoryCreation} >&#10003;</CreateCategoryButton> : <CreateCategoryButton onClick={handleCategoryCreation} >+</CreateCategoryButton>}
         </Modal>
       </Wrapper>}
