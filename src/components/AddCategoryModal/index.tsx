@@ -29,9 +29,11 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
   const [newCategory, setNewCategory] = useState("");
   const [showModal, setShowModal] = useState(show);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
+  const [hoveredCategoryId, setHoveredCategoryId] = useState("");
   const [selectedCategoryName, setSelectedCategoryName] = useState("");
   const categoryListRef = useRef<HTMLDivElement>(null);
   const newCategoryInputRef = useRef<HTMLInputElement>(null);
+
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -150,8 +152,13 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
         <Modal >
           <CategoryList ref={categoryListRef}>
             {categories.map(({ name, _id }) =>
-              <Category isSelected={_id === selectedCategoryId} onClick={() => handleCategorySelection(_id, name)}>
+              <Category isSelected={_id === selectedCategoryId}
+                onClick={() => handleCategorySelection(_id, name)}
+                onMouseEnter={() => setHoveredCategoryId(_id)}
+                onMouseLeave={() => setHoveredCategoryId("")}
+                >
                 {name}
+                {_id === hoveredCategoryId && <DeleteCategoryButton />}
               </Category>)}
             {isCreatingCategory
               && <Category >

@@ -77,6 +77,8 @@ text-align:center;
 background-color:${({ isSelected }) => isSelected ? '#817059' : '#EFEFEF'};
 font-weight: bold;
 font-size: 1.5rem;
+display:flex;
+position:relative;
 :hover{
   cursor: pointer;
   background-color:${({ isSelected }) => isSelected ? '#817059' : '#cfcccc'};
@@ -152,15 +154,20 @@ cursor: pointer;
 `;
 
 export const DeleteCategoryButton = styled.div`
-width: 10%;
-height: 10%;
+width: 3.5rem;
+height: 3.5rem;
 border-radius: 50%;
 background-color: #F1D9CF;
 color:black;
 font-weight: bolder;
+position:absolute;
+display:flex;
+justify-content:center;
+align-items:center;
+right:0.5rem;
 
 &:hover{
-background-color:'red';
+background-color:red;
 color:white;
 border:solid white 2px;
 }
