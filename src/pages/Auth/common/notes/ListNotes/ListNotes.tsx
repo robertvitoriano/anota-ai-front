@@ -15,7 +15,8 @@ import {
   MobileAddNoteButtonIcon,
   MobileAddNoteButtonText,
   MobileNotesContainer,
-  MobileAddNoteButtonTextContainer
+  MobileAddNoteButtonTextContainer,
+  NoteDate
 } from './styles'
 import plusSign from 'assets/plus-sign.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
@@ -35,9 +36,6 @@ const ListNotes = () => {
   useEffect(() => {
     getUserFirstaname()
     loadNotes()
-    return function cleanup() {
-      console.log('cleanup')
-    }
   }, [])
 
   const getUserFirstaname = async () => {
@@ -115,6 +113,7 @@ const ListNotes = () => {
                 <NoteBody>
                   {body}
                 </NoteBody>
+                <NoteDate> 05:03:30 - 12/12/03 </NoteDate>
               </Note>)}
             <Link to={`/note/create`}>
               <AddNoteButton>

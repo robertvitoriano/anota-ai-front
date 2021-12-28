@@ -55,7 +55,9 @@ border-radius:15px;
 word-wrap: break-word;
 padding:0 10px;
 margin-bottom: ${({mobile}:NoteProps)=>(mobile?'.5rem':'none')};
-width: 100%;`
+width: 100%;
+position:relative;
+`
 
 export const NoteTitle = styled.h2`
 text-align: center;
@@ -82,6 +84,15 @@ align-items: center;
 &:hover{
   cursor: pointer;
 }
+`
+export const NoteDate = styled.div`
+background-color:red;
+width:fit-content;
+background-color: white;
+position:absolute;
+bottom:0.5rem;
+right:1rem;
+font-weight: bold;
 `
 
 export const AddNoteButtonIcon = styled.img`
