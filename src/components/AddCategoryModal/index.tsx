@@ -1,5 +1,15 @@
 import { useState, useRef, useEffect } from "react";
-import { Translucent, Wrapper, Modal, Category, CategoryList, CreateCategoryButton, NewCategoryInput, SelectCategoryButton } from "./styled";
+import {
+  Translucent,
+  Wrapper,
+  Modal,
+  Category,
+  CategoryList,
+  CreateCategoryButton,
+  NewCategoryInput,
+  SelectCategoryButton,
+  DeleteCategoryButton
+} from "./styled";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLoading } from "store/modules/loading/reducer";
@@ -10,7 +20,7 @@ interface props {
   isCreating: boolean;
   show: boolean;
   onHide: () => void;
-  onSelect: (selectedCategoryId:string, selectedCategoryName:string) => void;
+  onSelect: (selectedCategoryId: string, selectedCategoryName: string) => void;
 }
 export default function AddCategoryModal({ isCreating, show, onHide, onSelect }: props) {
 
@@ -22,6 +32,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
   const [selectedCategoryName, setSelectedCategoryName] = useState("");
   const categoryListRef = useRef<HTMLDivElement>(null);
   const newCategoryInputRef = useRef<HTMLInputElement>(null);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -89,11 +100,11 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
           text: `You Deleted a Note !`,
           icon: "success",
           confirmButtonText: 'Ok !'
-        }).then(async() => {
-           await fetchCategories()
-            setNewCategory("");
-            setIsCreatingCategory(false)
-          })
+        }).then(async () => {
+          await fetchCategories()
+          setNewCategory("");
+          setIsCreatingCategory(false)
+        })
       }
     }).catch((error) => {
 
@@ -116,7 +127,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
     setShowModal(false);
     onHide();
   }
-  const handleCategorySelection = (categoryId: string, name:string) => {
+  const handleCategorySelection = (categoryId: string, name: string) => {
     if (categoryId !== selectedCategoryId) {
       setSelectedCategoryId(categoryId);
       setSelectedCategoryName(name);
@@ -147,7 +158,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
                 <NewCategoryInput value={newCategory} onChange={handleNewCategoryInput} placeholder="Type your new category" ref={newCategoryInputRef} />
               </Category>}
           </CategoryList>
-          {selectedCategoryId?<SelectCategoryButton onClick ={handleCategorySelectionConfirmation} >Select Category</SelectCategoryButton>:''}
+          {selectedCategoryId ? <SelectCategoryButton onClick={handleCategorySelectionConfirmation} >Select Category</SelectCategoryButton> : ''}
           {newCategory ? <CreateCategoryButton onClick={handleCategoryCreation} >&#10003;</CreateCategoryButton> : <CreateCategoryButton onClick={handleCategoryCreation} >+</CreateCategoryButton>}
         </Modal>
       </Wrapper>}

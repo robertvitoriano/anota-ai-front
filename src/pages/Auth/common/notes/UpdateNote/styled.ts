@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-type mobile =  {
+type mobile = {
     mobile?: boolean;
 }
 
-interface PageTitleProps extends mobile {}
+interface PageTitleProps extends mobile { }
 export const Wrapper = styled.div`
 display: flex;
 align-items: center;
@@ -30,8 +30,8 @@ border:1rem solid #370502;
 export const PageTitle = styled.h1`
 font-family: 'Calligraffitti', cursive;
 font-weight: bold;
-margin-top: ${({mobile}:PageTitleProps)=>(mobile?'3.5rem':'1.5rem')};
-font-size: ${({mobile}:PageTitleProps)=>(mobile?'2rem':'2.5rem')};
+margin-top: ${({ mobile }: PageTitleProps) => (mobile ? '3.5rem' : '1.5rem')};
+font-size: ${({ mobile }: PageTitleProps) => (mobile ? '2rem' : '2.5rem')};
 `
 
 export const NoteTitleInput = styled.input`
@@ -74,7 +74,6 @@ width: 30%;
 justify-content: space-evenly;
 
 `
-
 // MOBILE
 
 export const MobileNoteContainer = styled.div`

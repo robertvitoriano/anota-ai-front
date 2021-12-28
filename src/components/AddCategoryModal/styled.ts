@@ -149,5 +149,23 @@ cursor: pointer;
   background-color: #EFEFEF;
   filter: brightness(0.8);
 }
-
 `;
+
+export const DeleteCategoryButton = styled.div`
+width: 10%;
+height: 10%;
+border-radius: 50%;
+background-color: #F1D9CF;
+color:black;
+font-weight: bolder;
+
+&:hover{
+background-color:'red';
+color:white;
+border:solid white 2px;
+}
+
+&:before{
+content: 'X';
+}
+`
