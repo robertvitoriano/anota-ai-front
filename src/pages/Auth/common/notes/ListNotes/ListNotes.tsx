@@ -2,6 +2,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import api from 'services/api'
+import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz'
 import {
   Wrapper,
   NameTitle,
@@ -83,6 +84,7 @@ const ListNotes = () => {
 
       const notes = response.data
 
+
       setNotes(notes)
 
       dispatch(setIsLoading(false))
@@ -99,13 +101,21 @@ const ListNotes = () => {
     }
   }
 
+  const getFormattedDate = (timestamp: string) => {
+    const date = new Date(timestamp)
+    const timeZone = 'Brazil/Sao_Paulo'
+    const pattern = 'd/M/yyyy - HH:mm:ss'
+    const output = format(date, pattern, { timeZone })
+    return output
+  }
+
   return (
     <>
       <DesktopBreakPoint>
         <Wrapper>
           <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
           <NotesContainer>
-            {notes && notes.map(({ _id, title, body }) =>
+            {notes && notes.map(({ _id, title, body, createdAt }) =>
               <Note key={_id}>
                 <Link to={{ pathname: `/note/${_id}`, state: { title, body } }}  >
                   <NoteTitle>{title}</NoteTitle>
@@ -113,7 +123,7 @@ const ListNotes = () => {
                 <NoteBody>
                   {body}
                 </NoteBody>
-                <NoteDate> 05:03:30 - 12/12/03 </NoteDate>
+                <NoteDate>{getFormattedDate(createdAt)}</NoteDate>
               </Note>)}
             <Link to={`/note/create`}>
               <AddNoteButton>

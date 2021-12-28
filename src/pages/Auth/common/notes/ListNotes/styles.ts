@@ -93,6 +93,7 @@ position:absolute;
 bottom:0.5rem;
 right:1rem;
 font-weight: bold;
+font-size: 1rem;
 `
 
 export const AddNoteButtonIcon = styled.img`
