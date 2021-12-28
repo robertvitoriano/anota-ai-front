@@ -28,8 +28,6 @@ list-style: none;
 display: grid;
 grid-template-columns: 28% 28% 28%;
 grid-gap: 8%;
-position: absolute;
-top:0;
 padding: 30px;
 overflow: auto;
 margin-top: 100px;
