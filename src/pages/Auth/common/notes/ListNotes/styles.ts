@@ -57,6 +57,7 @@ padding:0 10px;
 margin-bottom: ${({mobile}:NoteProps)=>(mobile?'.5rem':'none')};
 width: 100%;
 position:relative;
+overflow: hidden;
 `
 
 export const NoteTitle = styled.h2`
