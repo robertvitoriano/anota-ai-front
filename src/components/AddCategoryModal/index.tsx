@@ -125,6 +125,47 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
 
   }
 
+  const handleCategoryDeletion = () => {
+    Swal.fire({
+      title: 'Delete category ? ',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+    }).then(async (result) => {
+      if (result.value) {
+        await api.delete(`/categories/${hoveredCategoryId}/remove`, {
+          headers: {
+            authorization: token || ''
+          }
+        })
+        if (result.value) {
+          Swal.fire({
+            title: "Category Successufully Deleted!",
+            text: `You Deleted a Category !`,
+            icon: "success",
+            confirmButtonText: 'Ok !'
+          }).then(async () => {
+            await fetchCategories()
+          })
+        }
+      }
+    }).catch((error) => {
+
+      console.error(error)
+
+      return Swal.fire(
+        'Um erro aconteceu',
+        String(error.message),
+        'error'
+      ).then(() => {
+        dispatch(setToken(''));
+        history.push('/')
+      })
+
+    })
+
+  }
+
   const hide = () => {
     setShowModal(false);
     onHide();
@@ -156,9 +197,9 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
                 onClick={() => handleCategorySelection(_id, name)}
                 onMouseEnter={() => setHoveredCategoryId(_id)}
                 onMouseLeave={() => setHoveredCategoryId("")}
-                >
+              >
                 {name}
-                {_id === hoveredCategoryId && <DeleteCategoryButton />}
+                {_id === hoveredCategoryId && <DeleteCategoryButton onClick={handleCategoryDeletion}/>}
               </Category>)}
             {isCreatingCategory
               && <Category >
