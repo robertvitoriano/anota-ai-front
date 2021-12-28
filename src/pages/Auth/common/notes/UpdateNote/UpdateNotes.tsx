@@ -86,6 +86,24 @@ export default function UpdateNotes() {
 
   const createNote = async (mode: string) => {
 
+    const missingField = !noteTitle || !noteBody || !selectedCategoryId;
+
+    let missingFieldName = '';
+    
+    if(!selectedCategoryId) missingFieldName = 'Category';
+    if(!noteTitle) missingFieldName = 'Title';
+    if(!noteBody) missingFieldName = 'Body';
+
+
+    if(missingField){
+      Swal.fire({
+        title: 'Missing field',
+        text: `${missingFieldName} is required`,
+        icon: 'error'
+      })
+      return;
+    }
+
     Swal.fire({
       title: `Do you really want to ${mode} this note ? `,
       icon: 'warning',
