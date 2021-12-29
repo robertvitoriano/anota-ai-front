@@ -17,7 +17,10 @@ import {
   MobileAddNoteButtonText,
   MobileNotesContainer,
   MobileAddNoteButtonTextContainer,
-  NoteDate
+  NoteDate,
+  SearchBar,
+  SearchBarLabel,
+  SearchBarWrapper
 } from './styles'
 import plusSign from 'assets/plus-sign.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
@@ -84,11 +87,9 @@ const ListNotes = () => {
 
       const notes = response.data
 
-
       setNotes(notes)
 
       dispatch(setIsLoading(false))
-
 
     } catch (error: any) {
       console.error(error)
@@ -114,6 +115,10 @@ const ListNotes = () => {
       <DesktopBreakPoint>
         <Wrapper>
           <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
+          <SearchBarWrapper>
+            <SearchBarLabel >Search:</SearchBarLabel>
+            <SearchBar placeholder='Search Notes' />
+          </SearchBarWrapper>
           <NotesContainer>
             {notes && notes.map(({ _id, title, body, createdAt }) =>
               <Note key={_id}>
@@ -144,6 +149,9 @@ const ListNotes = () => {
               </MobileAddNoteButtonTextContainer>
             </MobileAddNoteButton>
           </Link>
+          <SearchBarWrapper>
+            <SearchBar placeholder='Search Notes'/>
+          </SearchBarWrapper>
           <MobileNotesContainer>
             {notes && notes.map(({ _id, title, body }) =>
               <Note key={_id} mobile>

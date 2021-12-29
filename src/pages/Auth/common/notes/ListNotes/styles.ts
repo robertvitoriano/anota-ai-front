@@ -30,7 +30,6 @@ grid-template-columns: 28% 28% 28%;
 grid-gap: 8%;
 padding: 30px;
 overflow: auto;
-margin-top: 100px;
 &::-webkit-scrollbar {
     width: 1em;
 }
@@ -98,6 +97,28 @@ font-size: 1rem;
 export const AddNoteButtonIcon = styled.img`
 width: 200px;
 ;
+`
+
+export const SearchBar = styled.input`
+width: 80%;
+height: 40px;
+border-radius: 5px;
+border: 1px solid #242324;
+outline: none;
+padding: 0 10px;
+font-size: 1.5rem;
+text-align: center;
+`
+export const SearchBarLabel = styled.label`
+font-size: 1.5rem;
+margin-right: .5rem ;
+`
+export const SearchBarWrapper = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 1rem;
+margin-bottom: 1rem;
 
 `
 export const MobileNotesContainer = styled.div`
@@ -118,7 +139,7 @@ background-color: white;
 border:1px solid #242324;
 width: 60vw;
 border-radius: 1rem;
-margin-bottom: 2rem;
+margin-bottom: .5rem;
 
 `
 
