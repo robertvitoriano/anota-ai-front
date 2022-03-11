@@ -114,7 +114,7 @@ const ListNotes = () => {
     <>
       <DesktopBreakPoint>
         <Wrapper>
-          <NameTitle>Seja Bem-vindo(a) {userName}</NameTitle>
+          <NameTitle>Welcome {userName}</NameTitle>
           <SearchBarWrapper>
             <SearchBarLabel >Search:</SearchBarLabel>
             <SearchBar placeholder='Search Notes' />

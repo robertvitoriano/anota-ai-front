@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Layout as AndDesignLayout, Menu } from 'antd';
 import { PieChartOutlined, HomeFilled } from '@ant-design/icons';
 import { ContentContainer, Sider, MobileContentContainer, MenuItem, MenuItemContent } from './styles';
@@ -9,6 +9,7 @@ import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilit
 import LogoutButton from 'components/LogoutButton';
 import BackButton from 'components/BackButton'
 import Sidebar from 'components/Sidebar';
+import { Copyright } from 'components/Copyright';
 import { setCollapsed } from 'store/modules/sidebar/reducer';
 
 const { Content } = AndDesignLayout;
@@ -24,11 +25,12 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <DesktopBreakPoint>
-        <AndDesignLayout style={{ minHeight: '100%' }}> 
-        {/* <Sidebar/> */}
+        <AndDesignLayout style={{ minHeight: '100%' }}>
+          {/* <Sidebar/> */}
           <AndDesignLayout className="site-layout">
-            <Content onClick = {()=>dispatch(setCollapsed(true))}>
+            <Content onClick={() => dispatch(setCollapsed(true))}>
               <ContentContainer className="site-layout-background" style={{ minHeight: 360 }} backgroundImage={backgroundImage}>
+                <Copyright text="Developed by Robert Vitoriano" />
                 <BackButton />
                 {children}
                 <LogoutButton />

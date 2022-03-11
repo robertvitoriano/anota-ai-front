@@ -24,9 +24,10 @@ import backgroundImage from 'assets/login_background.jpg'
 import mobileBackgroundImage from 'assets/mobile_login_background.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 import { useDispatch } from 'react-redux'
-import {setIsLoading} from 'store/modules/loading/reducer'
+import { setIsLoading } from 'store/modules/loading/reducer'
 
 import api from 'services/api'
+import { Copyright } from 'components/Copyright'
 const SignIn = () => {
 
   const history = useHistory()
@@ -71,6 +72,7 @@ const SignIn = () => {
       <DesktopBreakPoint>
 
         <Wrapper backgroundImage={backgroundImage}>
+          <Copyright text="Developed by Robert Vitoriano" />
           <Content>
             <PresentationSection>
               {/* <Title level={1}>Let's write Some Notes</Title> */}
@@ -122,42 +124,42 @@ const SignIn = () => {
       <PhoneBreakPoint>
         <MobileWrapper backgroundImage={mobileBackgroundImage}>
           <FormSection>
-              <FormContainer>
-                <LoginMessage >Register yourself !</LoginMessage>
-                <Form
-                  autoComplete="off"
-                  onFinish={onFinish}
-                  onFinishFailed={onFinishFailed}
-                  initialValues={{ remember: true }}
+            <FormContainer>
+              <LoginMessage >Register yourself !</LoginMessage>
+              <Form
+                autoComplete="off"
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                initialValues={{ remember: true }}
 
+              >
+                <Label>E-mail !</Label>
+                <Form.Item
+                  name="email"
+                  rules={[{ required: true, message: 'Please input your e-mail!' }]}
                 >
-                  <Label>E-mail !</Label>
-                  <Form.Item
+                  <Input
+                    placeholder="Type your e-mail"
                     name="email"
-                    rules={[{ required: true, message: 'Please input your e-mail!' }]}
-                  >
-                    <Input
-                      placeholder="Type your e-mail"
-                      name="email"
-                    />
-                  </Form.Item>
+                  />
+                </Form.Item>
 
-                  <ButtonsContainer>
-                    <Form.Item>
-                      <SignUpButton size={'large'} htmlType="submit">
-                        <ButtonText>Send Sign Up E-mail !</ButtonText>
-                      </SignUpButton>
-                    </Form.Item>
-                    <Form.Item>
-                      <ReturnButtonContainer>
-                        <ReturnButtonIcon src=""></ReturnButtonIcon>
-                        <ReturnButton to="/login">Return</ReturnButton>
-                      </ReturnButtonContainer>
-                    </Form.Item>
-                  </ButtonsContainer>
-                </Form>
-              </FormContainer>
-            </FormSection>
+                <ButtonsContainer>
+                  <Form.Item>
+                    <SignUpButton size={'large'} htmlType="submit">
+                      <ButtonText>Send Sign Up E-mail !</ButtonText>
+                    </SignUpButton>
+                  </Form.Item>
+                  <Form.Item>
+                    <ReturnButtonContainer>
+                      <ReturnButtonIcon src=""></ReturnButtonIcon>
+                      <ReturnButton to="/login">Return</ReturnButton>
+                    </ReturnButtonContainer>
+                  </Form.Item>
+                </ButtonsContainer>
+              </Form>
+            </FormContainer>
+          </FormSection>
         </MobileWrapper>
       </PhoneBreakPoint>
     </>

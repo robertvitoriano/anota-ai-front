@@ -1,7 +1,7 @@
 
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setToken} from 'store/modules/auth/reducer'
+import { setToken } from 'store/modules/auth/reducer'
 
 import {
   FormContainer,
@@ -24,6 +24,7 @@ import mobileBackgroundImage from 'assets/mobile_login_background.png'
 import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilities'
 import api from 'services/api'
 import { setIsLoading } from 'store/modules/loading/reducer'
+import { Copyright } from 'components/Copyright'
 
 
 const SignIn = () => {
@@ -40,13 +41,13 @@ const SignIn = () => {
 
       const { token, user } = response.data;
 
-      dispatch(setToken('Bearer '+token));
+      dispatch(setToken('Bearer ' + token));
       dispatch(setIsLoading(false));
 
       history.push('/notes')
 
     } catch (error: any) {
-      
+
       dispatch(setIsLoading(false))
 
       console.error(error)
@@ -68,6 +69,7 @@ const SignIn = () => {
   return <>
     <DesktopBreakPoint>
       <Wrapper backgroundImage={backgroundImage}>
+        <Copyright text="Developed by Robert Vitoriano" />
         <Content>
           <PresentationSection>
           </PresentationSection>
@@ -116,45 +118,45 @@ const SignIn = () => {
     </DesktopBreakPoint>
     <PhoneBreakPoint>
       <MobileWrapper backgroundImage={mobileBackgroundImage}>
-          <FormSection mobile>
-            <FormContainer>
-              <LoginMessage >Let's write Some Notes</LoginMessage>
-              <Form
-                autoComplete="off"
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-              >
-                <Form.Item
-                  name="username"
-                  rules={[{ required: true, message: 'Please input your username!' }]}
+        <FormSection mobile>
+          <FormContainer>
+            <LoginMessage >Let's write Some Notes</LoginMessage>
+            <Form
+              autoComplete="off"
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+            >
+              <Form.Item
+                name="username"
+                rules={[{ required: true, message: 'Please input your username!' }]}
 
-                >
-                  <Input
-                    placeholder="Username" />
+              >
+                <Input
+                  placeholder="Username" />
+              </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[{ required: true, message: 'Please input your password!' }]}
+              >
+                <PasswordInput
+                  placeholder="Password"
+                />
+              </Form.Item>
+              <ButtonsContainer>
+                <Form.Item>
+                  <SignInButton size={'large'} htmlType='submit' >
+                    <ButtonText>Login !</ButtonText>
+                  </SignInButton>
                 </Form.Item>
-                <Form.Item
-                  name="password"
-                  rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                  <PasswordInput
-                    placeholder="Password"
-                  />
+                <Form.Item>
+                  <SignUpButton size={'large'}  >
+                    <Link to="/signup">Sign Up !</Link>
+                  </SignUpButton>
                 </Form.Item>
-                <ButtonsContainer>
-                  <Form.Item>
-                    <SignInButton size={'large'} htmlType='submit' >
-                      <ButtonText>Login !</ButtonText>
-                    </SignInButton>
-                  </Form.Item>
-                  <Form.Item>
-                    <SignUpButton size={'large'}  >
-                      <Link to="/signup">Sign Up !</Link>
-                    </SignUpButton>
-                  </Form.Item>
-                </ButtonsContainer>
-              </Form>
-            </FormContainer>
-          </FormSection>
+              </ButtonsContainer>
+            </Form>
+          </FormContainer>
+        </FormSection>
       </MobileWrapper>
     </PhoneBreakPoint>
   </>
