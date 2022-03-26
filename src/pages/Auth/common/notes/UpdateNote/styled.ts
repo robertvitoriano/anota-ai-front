@@ -66,7 +66,7 @@ font-weight: bolder;
 font-family: 'Calligraffitti', cursive;
 font-size: 1.5rem;
 text-align: center;
-
+margin-top: ${({mobile}:PageTitleProps) => (mobile ? '1rem' : 0)};
 `
 export const ButtonsWrapper = styled.div`
 display: flex;

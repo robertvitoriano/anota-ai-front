@@ -224,8 +224,8 @@ export default function UpdateNotes() {
             <MobileNoteBody>
               <NoteBodyTextArea value={noteBody} onChange={(event) => setNoteBody(event.target.value)} />
             </MobileNoteBody>
-            <Button onClick={() => createNote(isCreating ? 'create' : 'update')}>{location.pathname.includes('create') ? 'Create Note' : 'Update Note'}</Button>
-            {isCreating ? '' : <Button onClick={() => deleteNote(id)}>Delete Note</Button>}
+            <Button mobile onClick={() => createNote(isCreating ? 'create' : 'update')}>{location.pathname.includes('create') ? 'Create Note' : 'Update Note'}</Button>
+            {isCreating ? '' : <Button  mobile  onClick={() => deleteNote(id)}>Delete Note</Button>}
           </MobileNoteContainer>
         </Wrapper>
       </PhoneBreakPoint>
