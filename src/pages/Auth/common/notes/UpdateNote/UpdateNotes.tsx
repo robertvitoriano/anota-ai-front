@@ -195,8 +195,8 @@ export default function UpdateNotes() {
 
   return (
     <>
-      {showCategoriesModal && <AddCategoryModal onSelect={handleCategorySelection} isCreating={isCreating} show={showCategoriesModal} onHide={() => setShowCategoriesModal(false)} />}
       <DesktopBreakPoint>
+      {showCategoriesModal && <AddCategoryModal onSelect={handleCategorySelection} isCreating={isCreating} show={showCategoriesModal} onHide={() => setShowCategoriesModal(false)} />}
         <Wrapper>
           <PageTitle>Let's Write a Note !</PageTitle>
           <AddCategoryButton selectedCategoryName = {selectedCategoryName}  onClick={() => setShowCategoriesModal(true)} />
@@ -216,6 +216,8 @@ export default function UpdateNotes() {
         </Wrapper>
       </DesktopBreakPoint>
       <PhoneBreakPoint>
+      {showCategoriesModal && <AddCategoryModal mobile onSelect={handleCategorySelection} isCreating={isCreating} show={showCategoriesModal} onHide={() => setShowCategoriesModal(false)} />}
+
         <Wrapper>
           <PageTitle mobile>Let's Write a Note !</PageTitle>
           <AddCategoryButton selectedCategoryName = {'Add Category'} onClick={() => setShowCategoriesModal(true)} />

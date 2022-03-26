@@ -21,8 +21,9 @@ interface props {
   show: boolean;
   onHide: () => void;
   onSelect: (selectedCategoryId: string, selectedCategoryName: string) => void;
+  mobile?: boolean;
 }
-export default function AddCategoryModal({ isCreating, show, onHide, onSelect }: props) {
+export default function AddCategoryModal({ isCreating, show, onHide, onSelect, mobile }: props) {
 
   const [categories, setCategories] = useState([]);
   const [isCreatingCategory, setIsCreatingCategory] = useState(isCreating);
@@ -192,7 +193,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect }:
     <>
       {showModal && <Wrapper >
         <Translucent onClick={hide} />
-        <Modal >
+        <Modal mobile >
           <CategoryList ref={categoryListRef}>
             {categories.map(({ name, _id }) =>
               <Category isSelected={_id === selectedCategoryId}

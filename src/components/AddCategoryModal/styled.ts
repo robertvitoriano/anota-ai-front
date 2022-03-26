@@ -5,6 +5,11 @@ interface CategoryProps {
   isSelected?: boolean;
 }
 
+interface modalProps 
+{
+  mobile?: boolean;
+}
+
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -31,7 +36,7 @@ export const Translucent = styled.div`
 
 
 export const Modal = styled.div`
-width:500px;
+width:${({mobile}: modalProps) => mobile ? '80vw' : '50vw'};
 height:400px; 
 background-color:#DDD8DE;
 z-index:9999;
@@ -54,7 +59,7 @@ overflow:auto;
 
 }
 &::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: 3transparent;
     display:none;
 
 
