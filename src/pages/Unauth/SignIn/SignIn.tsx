@@ -158,6 +158,11 @@ const SignIn = () => {
                     <Link to="/signup">Sign Up !</Link>
                   </SignUpButton>
                 </Form.Item>
+                <Form.Item>
+                  <SignUpButton size={'large'}  >
+                    <Link to="/forgot-password">Forgot Password</Link>
+                  </SignUpButton>
+                </Form.Item>
               </ButtonsContainer>
             </Form>
           </FormContainer>
