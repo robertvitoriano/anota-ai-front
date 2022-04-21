@@ -1,3 +1,4 @@
+import ForgotPassword from 'pages/Unauth/ForgotPassword'
 import Login from './../pages/Unauth/SignIn'
 import SignUp from './../pages/Unauth/SignUp'
 
@@ -12,6 +13,12 @@ const routes = [
     component:SignUp,
     title:'SinUp',
     path:'/signup',
+    icon:''
+  },
+  {
+    component:ForgotPassword,
+    title:'Forgot Password',
+    path:'/forgot-password',
     icon:''
   }
 ]
