@@ -13,8 +13,6 @@ import {Copyright} from 'components/Copyright'
 export default function App() {
   //@ts-ignore
   const token = useSelector((state) => state.auth.token)
-  //@ts-ignore
-
 
   return (
     <>
