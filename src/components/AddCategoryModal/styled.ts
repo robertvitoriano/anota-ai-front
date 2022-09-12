@@ -97,13 +97,13 @@ position:relative;
 `
 
 export const CreateCategoryButton = styled.div`
-width:4rem;
-height:4rem;
+width:3rem;
+height:3rem;
 border-radius:50%;
 background-color: #817059;
 color:white;
 font-weight: bold;
-font-size: 3.5rem;
+font-size: 3rem;
 position:absolute;
 bottom:0.5rem;
 right:0.5rem;
@@ -145,12 +145,9 @@ export const SelectCategoryButton = styled.div`
 background-color: #F1D9CF;
 color:black;
 font-weight: bold;
-font-size: 1.5rem;
-position:absolute;
-bottom:0.5rem;
-right:30%;
-padding:0.5rem;
+font-size: 1.2rem;
 border: 1px solid black;
+padding: 3px;
 cursor: pointer;
 &:hover{
   background-color: #EFEFEF;
@@ -180,4 +177,11 @@ border:solid white 2px;
 &:before{
 content: 'X';
 }
+`
+export const CategoryButtonContainer = styled.div`
+  position: absolute;
+  bottom:0;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
 `

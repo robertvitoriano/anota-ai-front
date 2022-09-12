@@ -8,7 +8,8 @@ import {
   CreateCategoryButton,
   NewCategoryInput,
   SelectCategoryButton,
-  DeleteCategoryButton
+  DeleteCategoryButton,
+  CategoryButtonContainer
 } from "./styled";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
@@ -100,8 +101,8 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect, m
         });
       if (result.value) {
         Swal.fire({
-          title: "Note Successufully Deleted!",
-          text: `You Deleted a Note !`,
+          title: "Note Successufully Created!",
+          text: `You Created a Category !`,
           icon: "success",
           confirmButtonText: 'Ok !'
         }).then(async () => {
@@ -209,7 +210,9 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect, m
                 <NewCategoryInput value={newCategory} onChange={handleNewCategoryInput} placeholder="Type your new category" ref={newCategoryInputRef} />
               </Category>}
           </CategoryList>
-          {selectedCategoryId? <SelectCategoryButton onClick={handleCategorySelectionConfirmation} >Select Category</SelectCategoryButton> : ''}
+          <CategoryButtonContainer>
+          {selectedCategoryId? <SelectCategoryButton  onClick={handleCategorySelectionConfirmation} >Select Category</SelectCategoryButton> : ''}
+          </CategoryButtonContainer>
           {newCategory ? <CreateCategoryButton onClick={handleCategoryCreation} >&#10003;</CreateCategoryButton> : <CreateCategoryButton onClick={handleCategoryCreation} >+</CreateCategoryButton>}
         </Modal>
       </Wrapper>}
