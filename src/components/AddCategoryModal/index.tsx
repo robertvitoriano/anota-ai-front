@@ -61,11 +61,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect, m
 
   const fetchCategories = async () => {
     dispatch(setIsLoading(true));
-    const response = await api.get("/categories", {
-      headers: {
-        Authorization: token || ''
-      }
-    })
+    const response = await api.get("/categories")
     setCategories(response.data);
     dispatch(setIsLoading(false));
   }
@@ -91,15 +87,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect, m
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
       }).then(async (result) => {
-        await api.post('/categories/',
-          {
-            name: newCategory
-          },
-          {
-            headers: {
-              authorization: token || ''
-            },
-          });
+        await api.post('/categories/',{name: newCategory});
         if (result.value) {
           Swal.fire({
             title: "Note Successufully Created!",
@@ -138,11 +126,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect, m
       confirmButtonColor: '#3085d6',
     }).then(async (result) => {
       if (result.value) {
-        await api.delete(`/categories/${hoveredCategoryId}/remove`, {
-          headers: {
-            authorization: token || ''
-          }
-        })
+        await api.delete(`/categories/${hoveredCategoryId}/remove`)
         if (result.value) {
           Swal.fire({
             title: "Category Successufully Deleted!",

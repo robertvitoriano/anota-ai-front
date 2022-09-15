@@ -34,7 +34,6 @@ export default function UpdateNotes() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const token = useSelector((state: any) => state.auth.token);
 
   interface Note {
     _id: string;
@@ -42,28 +41,24 @@ export default function UpdateNotes() {
     body: string;
     categoryId: string;
     categoryName: string;
-
   }
 
+  type IParams = {
+    id:string
+  }
 
   useEffect(() => {
     fetchNote(); 
   }, []);
 
-  // @ts-ignore
-  const { id } = useParams();
+  const {id} = useParams() as IParams;
 
   const fetchNote = async () => {
     try {
 
       if (!isCreating) {
         dispatch(setIsLoading(true));
-        const response = await api.get(`/notes/${id}`,
-          {
-            headers: {
-              authorization: token || ''
-            }
-          });
+        const response = await api.get(`/notes/${id}`);
 
         const { title, body, categoryId, categoryName }:Note = response.data;
 
@@ -106,23 +101,13 @@ export default function UpdateNotes() {
       title: `Do you really want to ${mode} this note ? `,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',  // blue     
+      confirmButtonColor: '#3085d6',   
     }).then(async (result) => {
       if (mode === 'create') {
-        await api.post('/notes', { title: noteTitle, body: noteBody, categoryId: selectedCategoryId },
-          {
-            headers: {
-              authorization: token || ''
-            }
-          });
+        await api.post('/notes', { title: noteTitle, body: noteBody, categoryId: selectedCategoryId });
 
       } else {
-        await api.post('/notes/' + id, { title: noteTitle, body: noteBody, categoryId: selectedCategoryId },
-          {
-            headers: {
-              authorization: token || ''
-            }
-          });
+        await api.post('/notes/' + id, { title: noteTitle, body: noteBody, categoryId: selectedCategoryId });
       }
       if (result.value) {
         Swal.fire({
@@ -162,12 +147,7 @@ export default function UpdateNotes() {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
     }).then(async (result) => {
-      await api.delete('/notes/' + id,
-        {
-          headers: {
-            authorization: token || ''
-          },
-        });
+      await api.delete('/notes/' + id);
       if (result.value) {
         Swal.fire({
           title: "Note Successufully Deleted!",
@@ -219,7 +199,7 @@ export default function UpdateNotes() {
 
         <Wrapper>
           <PageTitle mobile>Let's Write a Note !</PageTitle>
-          <AddCategoryButton selectedCategoryName = {'Add Category'} onClick={() => setShowCategoriesModal(true)} />
+          <AddCategoryButton selectedCategoryName = {selectedCategoryName} onClick={() => setShowCategoriesModal(true)} />
           <MobileNoteContainer>
             <MobileNoteTitleInput value={noteTitle} onChange={(event) => setNoteTitle(event.target.value)} />
             <MobileNoteBody>

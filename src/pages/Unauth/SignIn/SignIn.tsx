@@ -39,9 +39,9 @@ const SignIn = () => {
       dispatch(setIsLoading(true));
       const response = await api.post('/users/login', values);
 
-      const { token, user } = response.data;
+      const { token } = response.data;
 
-      dispatch(setToken('Bearer ' + token));
+      dispatch(setToken(token));
       dispatch(setIsLoading(false));
 
       history.push('/notes')

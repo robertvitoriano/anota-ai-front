@@ -36,7 +36,6 @@ const ListNotes = () => {
 
   const history = useHistory()
   const dispatch = useDispatch()
-  const token = useSelector((state:IReduxState) => state.auth.token)
   useEffect(() => {
     getUserFirstaname()
     loadNotes()
@@ -46,11 +45,7 @@ const ListNotes = () => {
     dispatch(setIsLoading(true))
 
     try {
-      const response = await api.get("/users/me", {
-        headers: {
-          authorization: token || ''
-        }
-      });
+      const response = await api.get("/users/me");
 
       const { name } = response?.data
       setUserName(name)
@@ -78,11 +73,7 @@ const ListNotes = () => {
     try {
       dispatch(setIsLoading(true))
 
-      const response = await api.get("/notes", {
-        headers: {
-          authorization: token || ''
-        }
-      });
+      const response = await api.get("/notes");
 
       const notes = response.data
 
