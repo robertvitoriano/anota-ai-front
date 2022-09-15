@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setCollapsed } from 'store/modules/sidebar/reducer';
 import DynamicIcon from 'components/DynamicIcon';
 import { commonRoutes } from 'routes';
+import { IReduxState } from 'store/types';
 export default function SideBar() {
-  //@ts-ignore
-  const collapsed = useSelector((state) => state.sidebar.collapsed)
+
+  const collapsed = useSelector((state:IReduxState) => state.sidebar.collapsed)
   const dispatch = useDispatch()
 
   const onCollapse = (collapsed: boolean) => {

@@ -75,7 +75,7 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect, m
     if (!newCategory) {
       setIsCreatingCategory(!isCreatingCategory)
     } else {
-      createNewCategory();
+     await createNewCategory();
     }
   }
 
@@ -84,47 +84,49 @@ export default function AddCategoryModal({ isCreating, show, onHide, onSelect, m
   }
 
   const createNewCategory = async () => {
-    Swal.fire({
-      title: 'Create category ? ',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-    }).then(async (result) => {
-      await api.post('/categories/',
-        {
-          name: newCategory
-        },
-        {
-          headers: {
-            authorization: token || ''
+    return new Promise<void>((resolve, reject) => {
+      Swal.fire({
+        title: 'Create category ? ',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+      }).then(async (result) => {
+        await api.post('/categories/',
+          {
+            name: newCategory
           },
-        });
-      if (result.value) {
-        Swal.fire({
-          title: "Note Successufully Created!",
-          text: `You Created a Category !`,
-          icon: "success",
-          confirmButtonText: 'Ok !'
-        }).then(async () => {
-          await fetchCategories()
-          setNewCategory("");
-          setIsCreatingCategory(false)
+          {
+            headers: {
+              authorization: token || ''
+            },
+          });
+        if (result.value) {
+          Swal.fire({
+            title: "Note Successufully Created!",
+            text: `You Created a Category !`,
+            icon: "success",
+            confirmButtonText: 'Ok !'
+          }).then(async () => {
+            await fetchCategories()
+            setNewCategory("");
+            setIsCreatingCategory(false)
+            resolve()
+          })
+        }
+      }).catch((error) => {
+          reject(error)
+        console.error(error)
+        return Swal.fire(
+          'Um erro aconteceu',
+          String(error.message),
+          'error'
+        ).then(() => {
+          dispatch(setToken(''));
+          history.push('/')
         })
-      }
-    }).catch((error) => {
 
-      console.error(error)
-
-      return Swal.fire(
-        'Um erro aconteceu',
-        String(error.message),
-        'error'
-      ).then(() => {
-        dispatch(setToken(''));
-        history.push('/')
       })
-
-    })
+    }) 
 
   }
 

@@ -9,10 +9,10 @@ import { commonRoutes } from './routes';
 import { unauthRoutes } from './routes'
 import { AuthLayout } from "layouts";
 import { useSelector } from 'react-redux'
-import {Copyright} from 'components/Copyright'
+import { IReduxState } from "store/types";
 export default function App() {
-  //@ts-ignore
-  const token = useSelector((state) => state.auth.token)
+
+  const token = useSelector((state:IReduxState) => state.auth.token)
 
   return (
     <>

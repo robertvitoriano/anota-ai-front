@@ -33,13 +33,12 @@ const ForgotPassword = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-
   const onFinish = async (values: any) => {
     try {
       dispatch(setIsLoading(true))
       await api.patch('/users/begin-password-recovery', values);
-      //@ts-ignore
-      const email = document.getElementsByName('email')[0].value;
+      const emailElement = document.getElementsByName('email')[0] as HTMLInputElement ;
+      const email = emailElement.value
       const emailClient = email.split('@')[1].split('.')[0]
       dispatch(setIsLoading(false))
       Swal.fire({

@@ -27,6 +27,7 @@ import { PhoneBreakPoint, DesktopBreakPoint } from 'components/responsive_utilit
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsLoading } from 'store/modules/loading/reducer'
 import { setToken } from 'store/modules/auth/reducer'
+import { IReduxState } from 'store/types'
 
 const ListNotes = () => {
 
@@ -35,8 +36,7 @@ const ListNotes = () => {
 
   const history = useHistory()
   const dispatch = useDispatch()
-  //@ts-ignore
-  const token = useSelector(state => state.auth.token)
+  const token = useSelector((state:IReduxState) => state.auth.token)
   useEffect(() => {
     getUserFirstaname()
     loadNotes()
@@ -52,7 +52,6 @@ const ListNotes = () => {
         }
       });
 
-      //@ts-ignore
       const { name } = response?.data
       setUserName(name)
 

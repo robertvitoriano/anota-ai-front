@@ -58,7 +58,6 @@ export default function UpdateNotes() {
 
       if (!isCreating) {
         dispatch(setIsLoading(true));
-        //@ts-ignore
         const response = await api.get(`/notes/${id}`,
           {
             headers: {
