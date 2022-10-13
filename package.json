@@ -2,7 +2,7 @@
   "name": "anota-ai-front",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://robertvitoriano.com/anota-ai",
+  "homepage":"https://anota-ai-front.vercel.app/",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@loadable/component": "^5.15.0",
