@@ -2,7 +2,7 @@
   "name": "anota-ai-front",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://anota-ai-front.vercel.app/",
+  "homepage":"http://anota-ai-front.s3-website-us-east-1.amazonaws.com/",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@loadable/component": "^5.15.0",
@@ -42,7 +42,8 @@
     "start": "react-scripts start",
     "build": "cross-env CI=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy":"aws s3 sync build/ s3://anota-ai-front --acl public-read"
   },
   "eslintConfig": {
     "extends": [
